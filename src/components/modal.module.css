@@ -1,0 +1,157 @@
+.background {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* background: var(--main-background); */
+  backdrop-filter: blur(20px);
+  z-index: 1;
+}
+
+.modal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 1rem;
+  padding: 1.5rem;
+  padding-bottom: 2rem;
+  background: radial-gradient(circle at top, var(--accent-alt) -600%, var(--main-background) 60%);
+  border-radius: 0.5rem;
+  gap: 1rem;
+  box-sizing: border-box;
+  border: none;
+  border-top: 1px solid var(--line);
+  border-bottom: 0.5px solid var(--line-alt);
+  box-shadow: 4px 8px 8.5px var(--shadow);
+  font-size: 1.15rem;
+  outline: none;
+  /* transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); */
+  z-index: 2;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 1rem
+}
+
+.inputContainer {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  z-index: 1;
+  left: 1rem;
+  color: var(--third);
+  opacity: 0.5;
+}
+
+.button,
+.buttonMain {
+  width: 100%;
+}
+
+.button,
+.buttonMain,
+.buttonClose {
+  margin-top: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  border-top: 1px solid var(--line);
+  border-bottom: 0.5px solid var(--line-alt);
+  box-shadow: 2px 4px 5.5px var(--shadow);
+  font-size: 1.15rem;
+  transition-property: color, background, box-shadow, text-decoration;
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  /* transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); */
+}
+
+.buttonMain {
+  background: var(--accent);
+  /* background: linear-gradient(-200deg, var(--accent-alt), var(--accent)); */
+  color: var(--main);
+  font-weight: 600;
+}
+
+.buttonClose {
+  padding: 0.625rem;
+  align-self: flex-end;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.logo {
+  margin-top: -2rem;
+  margin-bottom: 0.5rem;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.title {
+  color: var(--primary);
+  font-size: 2rem;
+  line-height: 2.25rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.description, .error {
+  max-width: 250px;
+  color: var(--third);
+  opacity: 0.9;
+  font-size: 0.9rem;
+  line-height: 1.25rem;
+  text-align: center;
+}
+
+.description {
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+}
+
+.error {
+  margin-top: -0.25rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover,
+  .buttonMain:hover,
+  .buttonClose:hover {
+    background: var(--line-alt);
+    color: var(--primary);
+    box-shadow: 4px 8px 5.5px var(--shadow);
+  }
+
+  .button:hover {
+    text-decoration: underline;
+  }
+}

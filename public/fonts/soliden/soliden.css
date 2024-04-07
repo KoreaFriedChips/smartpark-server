@@ -1,0 +1,79 @@
+@font-face {
+    font-family: Soliden;
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("./Soliden-Medium.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: Soliden;
+    font-style: italic;
+    font-weight: 500;
+    font-display: swap;
+    src: url("./Soliden-MediumOblique.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: Soliden;
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("./Soliden-SemiBold.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: Soliden;
+    font-style: italic;
+    font-weight: 600;
+    font-display: swap;
+    src: url("./Soliden-SemiBoldOblique.ttf") format("ttf");
+}
+
+/* @font-face {
+    font-family: Soliden;
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("./Soliden-Bold.ttf") format("ttf");
+} */
+
+@font-face {
+    font-family: Soliden;
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("./Soliden-BoldOblique.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: Soliden;
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url("./Soliden-ExtraBold.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: Soliden;
+    font-style: italic;
+    font-weight: 800;
+    font-display: swap;
+    src: url("./Soliden-ExtraBoldOblique.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: Soliden;
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url("./Soliden-Black.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: Soliden;
+    font-style: italic;
+    font-weight: 900;
+    font-display: swap;
+    src: url("./Soliden-BlackOblique.ttf") format("ttf");
+}
