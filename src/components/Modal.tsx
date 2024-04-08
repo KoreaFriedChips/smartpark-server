@@ -21,7 +21,7 @@ export default function Modal() {
 
   const title = state?.message === "success" || name ? "We've added you to our waiting list!" : "Join the wait list for SmartPark!";
   return (
-    <div className={styles.background}>
+    <div className={styles.background} id="modal">
       <dialog className={styles.modal}>
         <form className={styles.form} action={formAction} onSubmit={() => {}}>
           <Link href="/" className={styles.buttonClose} role="button">

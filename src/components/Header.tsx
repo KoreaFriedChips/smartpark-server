@@ -13,7 +13,6 @@ export default function Header() {
 
   const handleScroll = () => {
     const offset = window.scrollY;
-    console.log(offset);
     if (offset > 100) {
       setHasScrolled(true);
     } else {
@@ -30,7 +29,7 @@ export default function Header() {
     <header className={`${styles.header} ${hasScrolled ? styles.headerScrolled : ""}`}>
       <div className={styles.headerContainer}>
         <a href="#" className={styles.logo}>
-          <Image src={colorScheme === "dark" ? "/SMARTPARK-WEB-LOGO-DARK-min.png" : "/SMARTPARK-WEB-LOGO-LIGHT-min.png"} alt="SmartPark Logo" width={202} height={30} priority />
+          <Image src={colorScheme === "dark" ? "/SMARTPARK-WEB-LOGO-DARK.png" : "/SMARTPARK-WEB-LOGO-LIGHT.png"} alt="SmartPark Logo" width={202} height={30} priority />
         </a>
         <nav className={styles.nav}>
           <a href="mailto:hello@trysmartpark.com" className={styles.button} role="button">

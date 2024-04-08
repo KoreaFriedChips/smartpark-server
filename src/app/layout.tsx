@@ -2,11 +2,16 @@ import Script from "next/script";
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
+import { Inter } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "SmartPark: Online Parking Marketplace",
   description: "Find your next parking spot with SmartPark.",
 };
+
+const inter = Inter({
+  subsets: ["latin"],
+});
 
 export const runtime = "edge";
 

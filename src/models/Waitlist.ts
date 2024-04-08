@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { unique } from "next/dist/build/utils";
 
 const waitlistSchema = new mongoose.Schema(
   {
@@ -13,6 +12,6 @@ const waitlistSchema = new mongoose.Schema(
   }
 );
 
-const Waitlist = mongoose.models.Waitlist || mongoose.model("Waitlist", waitlistSchema);
+const Waitlist = mongoose.model("Waitlist", waitlistSchema);
 
 export default Waitlist;
