@@ -171,8 +171,8 @@
   }
 
   .headerContainer {
-    padding: 1.85rem 1.5rem;
-    padding-bottom: 1rem;
+    padding: 1.25rem 1rem;
+    padding-bottom: 0.75rem;
   }
 
   .header .buttonMain {
@@ -180,13 +180,13 @@
   }
 
   .main {
-    padding: 8rem 1rem 0 1rem;
+    padding: 7.5rem 1rem 0 1rem;
   }
 
   .heroImage {
     width: 1350px;
     height: 759px;
-    margin-top: -6rem;
+    margin-top: -7.5rem;
   }
 
   .shadowText {
