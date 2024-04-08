@@ -1,4 +1,74 @@
-@import url("/fonts/soliden.css");
+@font-face {
+  font-family: "Soliden";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/soliden/Soliden-Medium.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Soliden";
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/soliden/Soliden-MediumOblique.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Soliden";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/soliden/Soliden-SemiBold.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Soliden";
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/soliden/Soliden-SemiBoldOblique.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Soliden";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/soliden/Soliden-BoldOblique.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Soliden";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/soliden/Soliden-ExtraBold.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Soliden";
+  font-style: italic;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/soliden/Soliden-ExtraBoldOblique.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Soliden";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("/fonts/soliden/Soliden-Black.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Soliden";
+  font-style: italic;
+  font-weight: 900;
+  font-display: swap;
+  src: url("/fonts/soliden/Soliden-BlackOblique.ttf") format("ttf");
+}
 
 :root {
   --primary: #101014;
