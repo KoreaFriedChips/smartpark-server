@@ -1,15 +1,18 @@
 import mongoose from "mongoose";
+import { unique } from "next/dist/build/utils";
 
-const waitlistEntrySchema = new mongoose.Schema(
+const waitlistSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
-    email: { type: String, required: true },
+    email: { type: String, unique: true, required: true },
+    use: { type: String },
+    place: { type: Number },
   },
   {
     timestamps: true,
   }
 );
 
-const WaitlistEntry = mongoose.models.WaitlistEntry || mongoose.model("WaitlistEntry", waitlistEntrySchema);
+const Waitlist = mongoose.models.Waitlist || mongoose.model("Waitlist", waitlistSchema);
 
-export default WaitlistEntry;
+export default Waitlist;

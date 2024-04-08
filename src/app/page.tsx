@@ -13,7 +13,7 @@ type SearchParamProps = {
   searchParams: Record<string, string> | null | undefined;
 };
 
-export default async function Home({ searchParams }: SearchParamProps) {
+export default function Home({ searchParams }: SearchParamProps) {
   // useEffect(() => {
   //   if (window.prefinery) {
   //     window.prefinery = window.prefinery || function() {(window.prefinery.q = window.prefinery.q || []).push(arguments)};
@@ -24,7 +24,6 @@ export default async function Home({ searchParams }: SearchParamProps) {
   return (
     <main className={styles.main}>
       {show && <Modal />}
-      <Header />
       <div className={styles.heroSection}>
         <div className={styles.hero}>
           <p className={styles.shadowText}>SMARTPARK WAITLIST</p>

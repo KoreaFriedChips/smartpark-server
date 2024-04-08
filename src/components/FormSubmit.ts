@@ -3,12 +3,17 @@
 import { z } from "zod";
 import { cookies } from "next/headers";
 import mongoose from "mongoose";
+import Waitlist from "@/models/Waitlist";
+import WaitlistCounter from "@/models/WaitlistCounter";
+import dbConnect from "@/utils/mongodb";
 const schema = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.string().email("Invalid email"),
+  name: z.string().min(1, "Name is required").max(50, "Name must be 50 characters or fewer"),
+  email: z.string().email("Invalid email").max(254, "Email must be 254 characters or fewer"),
 });
 
 export async function formSubmit(prevState: any, formData: FormData) {
+  await dbConnect();
+
   const lastSubmission = cookies().get("submission");
   const currentTime = Date.now();
   const submissionTimeout = 60000;
@@ -20,11 +25,9 @@ export async function formSubmit(prevState: any, formData: FormData) {
     };
   }
 
-  cookies().set("submission", `${currentTime}`);
-  
   const data = {
-    name: formData.get("name"),
-    email: formData.get("email"),
+    name: String(formData.get("name")),
+    email: String(formData.get("email")).toLowerCase(),
     hidden: formData.get("catch"),
   };
 
@@ -50,6 +53,33 @@ export async function formSubmit(prevState: any, formData: FormData) {
     };
   }
 
+  const entry = await Waitlist.findOne({ email: data.email });
+  if (entry) {
+    return {
+      message: "error",
+      error: "Email already exists in the waitlist",
+    };
+  }
+
+  try {
+    const counter = (await WaitlistCounter.findOne()) || new WaitlistCounter({ count: 1 });
+    counter.count += 1;
+    await counter.save();
+
+    const waitlistEntry = new Waitlist({
+      name: data.name,
+      email: data.email,
+      place: counter.count,
+    });
+    await waitlistEntry.save();
+  } catch (error) {
+    return {
+      message: "error",
+      error: "Failed to save to database. Please try again later",
+    };
+  }
+
+  cookies().set("submission", `${currentTime}`);
   cookies().set("name", `${data.name}`);
   cookies().set("email", `${data.email}`);
 
