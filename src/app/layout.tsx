@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   description: "Find your next parking spot with SmartPark.",
 };
 
+export const runtime = "edge";
+
 export default function RootLayout({
   children,
 }: Readonly<{
