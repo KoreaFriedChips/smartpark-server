@@ -3,7 +3,7 @@
     font-style: normal;
     font-weight: 500;
     font-display: swap;
-    src: url("./Soliden-Medium.ttf") format("ttf");
+    src: url("./Soliden-Medium.woff2") format("woff2");
 }
 
 @font-face {
@@ -11,7 +11,7 @@
     font-style: italic;
     font-weight: 500;
     font-display: swap;
-    src: url("./Soliden-MediumOblique.ttf") format("ttf");
+    src: url("./Soliden-MediumOblique.woff2") format("woff2");
 }
 
 @font-face {
@@ -19,7 +19,7 @@
     font-style: normal;
     font-weight: 600;
     font-display: swap;
-    src: url("./Soliden-SemiBold.ttf") format("ttf");
+    src: url("./Soliden-SemiBold.woff2") format("woff2");
 }
 
 @font-face {
@@ -27,7 +27,7 @@
     font-style: italic;
     font-weight: 600;
     font-display: swap;
-    src: url("./Soliden-SemiBoldOblique.ttf") format("ttf");
+    src: url("./Soliden-SemiBoldOblique.woff2") format("woff2");
 }
 
 /* @font-face {
@@ -35,7 +35,7 @@
     font-style: normal;
     font-weight: 700;
     font-display: swap;
-    src: url("./Soliden-Bold.ttf") format("ttf");
+    src: url("./Soliden-Bold.woff2") format("woff2");
 } */
 
 @font-face {
@@ -43,7 +43,7 @@
     font-style: normal;
     font-weight: 700;
     font-display: swap;
-    src: url("./Soliden-BoldOblique.ttf") format("ttf");
+    src: url("./Soliden-BoldOblique.woff2") format("woff2");
 }
 
 @font-face {
@@ -51,7 +51,7 @@
     font-style: normal;
     font-weight: 800;
     font-display: swap;
-    src: url("./Soliden-ExtraBold.ttf") format("ttf");
+    src: url("./Soliden-ExtraBold.woff2") format("woff2");
 }
 
 @font-face {
@@ -59,7 +59,7 @@
     font-style: italic;
     font-weight: 800;
     font-display: swap;
-    src: url("./Soliden-ExtraBoldOblique.ttf") format("ttf");
+    src: url("./Soliden-ExtraBoldOblique.woff2") format("woff2");
 }
 
 @font-face {
@@ -67,7 +67,7 @@
     font-style: normal;
     font-weight: 900;
     font-display: swap;
-    src: url("./Soliden-Black.ttf") format("ttf");
+    src: url("./Soliden-Black.woff2") format("woff2");
 }
 
 @font-face {
@@ -75,5 +75,5 @@
     font-style: italic;
     font-weight: 900;
     font-display: swap;
-    src: url("./Soliden-BlackOblique.ttf") format("ttf");
+    src: url("./Soliden-BlackOblique.woff2") format("woff2");
 }

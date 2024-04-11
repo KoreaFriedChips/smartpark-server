@@ -60,6 +60,13 @@
   left: 1rem;
   color: var(--third);
   opacity: 0.5;
+  pointer-events: none;
+  transition: all 0.15s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.inputContainer:has(input:not(:placeholder-shown)) .inputIcon {
+  color: var(--primary) !important;
+  opacity: 100%;
 }
 
 .button,
@@ -153,5 +160,11 @@
 
   .button:hover {
     text-decoration: underline;
+  }
+}
+
+@media (max-width: 700px) {
+  .modal {
+    margin-top: -4rem;
   }
 }

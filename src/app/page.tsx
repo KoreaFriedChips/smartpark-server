@@ -41,11 +41,11 @@ export default function Home({ searchParams }: SearchParamProps) {
                 <p>Join early access</p>
               </Link>
               <div className={styles.buttonDetails}>
-                <p>&gt;15 seconds</p>
+                <p>&lt;15 seconds</p>
                 <p>No commitment</p>
               </div>
             </div>
-            <a href="https://youtube.com/trysmartpark" target="_blank" className={styles.button} role="button">
+            <a href="https://youtube.com/@TrySmartPark" target="_blank" className={styles.button} role="button">
               <Clapperboard size={18} />
               <p>Watch trailer</p>
             </a>

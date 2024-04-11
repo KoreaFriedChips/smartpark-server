@@ -1,8 +1,9 @@
 import Script from "next/script";
+import Head from "next/head";
+import { Html } from "next/document";
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
-import { Inter } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "SmartPark: Online Parking Marketplace",
@@ -14,19 +15,15 @@ export const metadata: Metadata = {
     description: "SmartPark is a real-time online marketplace that connects drivers with private parking spaces, enabling users to securely list and bid on spots.",
     type: "website",
     url: "https://www.smartpark.com",
-    images: ["/../public/SMARTPARK-DEMO-2.png"],
+    images: ["/SMARTPARK-WAITLIST-ICON.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "SmartPark: Online Parking Marketplace",
     description: "SmartPark is a real-time online marketplace that connects drivers with private parking spaces, enabling users to securely list and bid on spots.",
-    images: ["/../public/SMARTPARK-DEMO-2.png"],
+    images: ["/SMARTPARK-DEMO-2.png"],
   },
 };
-const inter = Inter({
-  subsets: ["latin"],
-});
-
 export const runtime = "edge";
 
 export default function RootLayout({
@@ -41,6 +38,7 @@ export default function RootLayout({
         <Script src="https://widget.prefinery.com/widget/v2/ctwzqz1c.js" strategy="afterInteractive" defer /> */}
         {children}
         <script> </script>
+        <link rel="stylesheet" href="/fonts/soliden.css" />
       </body>
     </html>
   );

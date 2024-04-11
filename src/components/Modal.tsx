@@ -36,11 +36,11 @@ export default function Modal() {
             <>
               <div className={styles.inputContainer}>
                 <CircleUserRound className={styles.inputIcon} size={16} />
-                <input type="text" value="" readOnly={true} placeholder={state?.name || name} name="name" required />
+                <input type="text" value="" readOnly={true} placeholder={state?.name || name} name="name" required disabled/>
               </div>
               <div className={styles.inputContainer}>
                 <Mail className={styles.inputIcon} size={16} />
-                <input type="email" value="" readOnly={true} placeholder={state?.email || email} name="email" required />
+                <input type="email" value="" readOnly={true} placeholder={state?.email || email} name="email" required disabled/>
               </div>
             </>
           ) : (

@@ -1,74 +1,4 @@
-@font-face {
-  font-family: "Soliden";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("/fonts/soliden/Soliden-Medium.ttf") format("ttf");
-}
-
-@font-face {
-  font-family: "Soliden";
-  font-style: italic;
-  font-weight: 500;
-  font-display: swap;
-  src: url("/fonts/soliden/Soliden-MediumOblique.ttf") format("ttf");
-}
-
-@font-face {
-  font-family: "Soliden";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("/fonts/soliden/Soliden-SemiBold.ttf") format("ttf");
-}
-
-@font-face {
-  font-family: "Soliden";
-  font-style: italic;
-  font-weight: 600;
-  font-display: swap;
-  src: url("/fonts/soliden/Soliden-SemiBoldOblique.ttf") format("ttf");
-}
-
-@font-face {
-  font-family: "Soliden";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("/fonts/soliden/Soliden-BoldOblique.ttf") format("ttf");
-}
-
-@font-face {
-  font-family: "Soliden";
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url("/fonts/soliden/Soliden-ExtraBold.ttf") format("ttf");
-}
-
-@font-face {
-  font-family: "Soliden";
-  font-style: italic;
-  font-weight: 800;
-  font-display: swap;
-  src: url("/fonts/soliden/Soliden-ExtraBoldOblique.ttf") format("ttf");
-}
-
-@font-face {
-  font-family: "Soliden";
-  font-style: normal;
-  font-weight: 900;
-  font-display: swap;
-  src: url("/fonts/soliden/Soliden-Black.ttf") format("ttf");
-}
-
-@font-face {
-  font-family: "Soliden";
-  font-style: italic;
-  font-weight: 900;
-  font-display: swap;
-  src: url("/fonts/soliden/Soliden-BlackOblique.ttf") format("ttf");
-}
+@import url("/fonts/soliden/soliden.css");
 
 :root {
   --primary: #101014;
@@ -89,7 +19,6 @@
     --primary: #f0f0f0;
     --secondary: #e0e0e0;
     --third: #c0c0cd;
-    /* --main: #f6f6f6; */
     --main-background: #101014;
     --accent-alt: #589dd6;
     --line: rgba(187, 187, 187, 0.5);
@@ -108,7 +37,7 @@
   /* letter-spacing: -0.025em; */
   letter-spacing: -0.05em;
   box-sizing: border-box;
-  font-family: "Soliden", sans-serif, "Inter", sans-serif, "system-ui", sans-serif, "Roboto", sans-serif;
+  font-family: "Soliden", sans-serif !important;
   padding: 0;
   margin: 0;
 }
@@ -146,12 +75,18 @@ input {
   border-top: 0.5px solid var(--line);
   border-bottom: 0.5px solid var(--line-alt);
   box-shadow: 2px 4px 5.5px var(--shadow);
-  color: var(--primary);
+  /* color: var(--line); */
   /* backdrop-filter: blur(4px); */
   font-size: 1rem;
   background: transparent !important;
   outline: none;
   transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  input:not(:disabled):hover {
+    background: var(--line-alt) !important;
+  }
 }
 
 input:-webkit-autofill,
