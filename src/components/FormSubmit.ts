@@ -61,20 +61,25 @@ export async function formSubmit(prevState: any, formData: FormData) {
       };
     }
 
-    const highestEntry = await prisma.waitlist.findFirst({
-      orderBy: { place: "desc" },
-    });
 
-    let highestPlace = highestEntry && highestEntry.place != null ? highestEntry.place : 0;
-    highestPlace += 1;
+    await prisma.$transaction(async (prisma) => {
+      const highestEntry = await prisma.waitlist.findFirst({
+        orderBy: { place: "desc" },
+      });
+  
+      let highestPlace = highestEntry && highestEntry.place != null ? highestEntry.place : 0;
+      highestPlace += 1;
+  
+      await prisma.waitlist.create({
+        data: {
+          name: data.name,
+          email: data.email,
+          place: highestPlace,
+        },
+      });
+    })
 
-    const waitlistEntry = await prisma.waitlist.create({
-      data: {
-        name: data.name,
-        email: data.email,
-        place: highestPlace,
-      },
-    });
+    
   } catch (error) {
     console.log(error);
     return {
