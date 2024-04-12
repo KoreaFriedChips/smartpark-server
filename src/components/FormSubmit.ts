@@ -1,10 +1,8 @@
 "use server";
 
 import { z } from "zod";
-import { PrismaClient } from '@prisma/client/edge'
+import { PrismaClient } from "@prisma/client/edge";
 import { cookies } from "next/headers";
-import Waitlist from "@/models/Waitlist";
-import WaitlistCounter from "@/models/WaitlistCounter";
 const prisma = new PrismaClient();
 const schema = z.object({
   name: z.string().min(1, "Name is required").max(50, "Name must be 50 characters or fewer"),
@@ -63,17 +61,18 @@ export async function formSubmit(prevState: any, formData: FormData) {
       };
     }
 
-    const counter = await prisma.waitlistCounter.upsert({
-      where: { id: "unique-counter-id" },
-      update: { count: { increment: 1 } },
-      create: { count: 1 },
+    const highestEntry = await prisma.waitlist.findFirst({
+      orderBy: { place: "desc" },
     });
+
+    let highestPlace = highestEntry && highestEntry.place != null ? highestEntry.place : 0;
+    highestPlace += 1;
 
     const waitlistEntry = await prisma.waitlist.create({
       data: {
         name: data.name,
         email: data.email,
-        place: counter.count,
+        place: highestPlace,
       },
     });
   } catch (error) {
