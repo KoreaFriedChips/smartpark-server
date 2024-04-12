@@ -2,7 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useCookies } from "next-client-cookies";
-import { useFormState } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 import styles from "./modal.module.css";
 import { formSubmit } from "./FormSubmit";
 import { Sparkles, Mail, CircleUserRound, X, MoonStar } from "lucide-react";
@@ -12,9 +12,11 @@ const initialState = {
   name: "",
   email: "",
   error: "",
+  place: "",
 };
 
 export default function Modal() {
+  const { pending } = useFormStatus();
   const [state, formAction] = useFormState(formSubmit, initialState);
   const name = useCookies()?.get("name");
   const email = useCookies()?.get("email");
@@ -32,6 +34,7 @@ export default function Modal() {
           </Link>
           <h2 className={styles.title}>{title}</h2>
           <p className={styles.description}>We'll let you know when SmartPark is available near you.</p>
+          {/* { state?.message === "success" && <p className={styles.success}>You are in position {state?.place}!</p> */}
           {state?.message === "success" || name ? (
             <>
               <div className={styles.inputContainer}>
@@ -59,7 +62,7 @@ export default function Modal() {
               </div> */}
               <input type="hidden" name="catch" />
               {state?.message === "error" && <p className={styles.error}>{state?.error}</p>}
-              <button className={styles.buttonMain} type="submit">
+              <button className={styles.buttonMain} type="submit" disabled={pending}>
                 <Sparkles size={18} />
                 Join waitlist
               </button>

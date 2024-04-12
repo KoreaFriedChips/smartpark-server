@@ -77,9 +77,7 @@ export async function formSubmit(prevState: any, formData: FormData) {
           place: highestPlace,
         },
       });
-    })
-
-    
+    });
   } catch (error) {
     console.log(error);
     return {
