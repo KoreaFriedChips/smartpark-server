@@ -2,10 +2,11 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useCookies } from "next-client-cookies";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormState } from "react-dom";
 import styles from "./modal.module.css";
 import { formSubmit } from "./FormSubmit";
-import { Sparkles, Mail, CircleUserRound, X, MoonStar } from "lucide-react";
+import SubmitButton from "./SubmitButton";
+import { Mail, CircleUserRound, X, MoonStar } from "lucide-react";
 
 const initialState = {
   message: "",
@@ -16,12 +17,12 @@ const initialState = {
 };
 
 export default function Modal() {
-  const { pending } = useFormStatus();
   const [state, formAction] = useFormState(formSubmit, initialState);
   const name = useCookies()?.get("name");
   const email = useCookies()?.get("email");
 
   const title = state?.message === "success" || name ? "We've added you to our waiting list!" : "Join the wait list for SmartPark!";
+
   return (
     <div className={styles.background} id="modal">
       <dialog className={styles.modal}>
@@ -62,10 +63,7 @@ export default function Modal() {
               </div> */}
               <input type="hidden" name="catch" />
               {state?.message === "error" && <p className={styles.error}>{state?.error}</p>}
-              <button className={styles.buttonMain} type="submit" disabled={pending}>
-                <Sparkles size={18} />
-                Join waitlist
-              </button>
+              <SubmitButton />
             </>
           )}
         </form>

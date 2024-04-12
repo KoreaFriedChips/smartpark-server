@@ -98,6 +98,12 @@
   /* transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); */
 }
 
+.button:disabled, .buttonMain:disabled {
+  opacity: 0.5;
+  background: var(--line-alt);
+  color: var(--primary);
+}
+
 .buttonMain {
   background: var(--accent);
   /* background: linear-gradient(-200deg, var(--accent-alt), var(--accent)); */
