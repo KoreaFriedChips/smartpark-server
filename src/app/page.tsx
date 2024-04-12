@@ -46,7 +46,7 @@ export default function Home({ searchParams }: SearchParamProps) {
                   <p>No commitment</p>
                 </div>
               </div>
-              <a href="https://youtube.com/@TrySmartPark" target="_blank" className={styles.button} role="button">
+              <a href="https://youtu.be/nu-ic3TmaVQ" target="_blank" className={styles.button} role="button">
                 <Clapperboard size={18} />
                 <p>Watch trailer</p>
               </a>
