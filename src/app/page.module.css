@@ -83,7 +83,7 @@
 }
 
 .description {
-  color: var(--third);
+  color: var(--secondary);
   opacity: 0.9;
   /* font-weight: 600; */
   font-size: 1.25rem;
@@ -195,11 +195,12 @@
 
   .title {
     font-size: 3rem;
+    font-weight: 700;
   }
 
   .description {
-    font-size: 1.15rem;
-    line-height: 1.75rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 
   .buttonContainer {

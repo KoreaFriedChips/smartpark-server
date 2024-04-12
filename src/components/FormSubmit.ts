@@ -1,19 +1,17 @@
 "use server";
 
 import { z } from "zod";
+import { PrismaClient } from '@prisma/client/edge'
 import { cookies } from "next/headers";
-import mongoose from "mongoose";
 import Waitlist from "@/models/Waitlist";
 import WaitlistCounter from "@/models/WaitlistCounter";
-import dbConnect from "@/utils/mongodb";
+const prisma = new PrismaClient();
 const schema = z.object({
   name: z.string().min(1, "Name is required").max(50, "Name must be 50 characters or fewer"),
   email: z.string().email("Invalid email").max(254, "Email must be 254 characters or fewer"),
 });
 
 export async function formSubmit(prevState: any, formData: FormData) {
-  await dbConnect();
-
   const lastSubmission = cookies().get("submission");
   const currentTime = Date.now();
   const submissionTimeout = 60000;
@@ -53,26 +51,33 @@ export async function formSubmit(prevState: any, formData: FormData) {
     };
   }
 
-  const entry = await Waitlist.findOne({ email: data.email });
-  if (entry) {
-    return {
-      message: "error",
-      error: "Email already exists in the waitlist",
-    };
-  }
-
   try {
-    const counter = (await WaitlistCounter.findOne()) || new WaitlistCounter({ count: 1 });
-    counter.count += 1;
-    await counter.save();
-
-    const waitlistEntry = new Waitlist({
-      name: data.name,
-      email: data.email,
-      place: counter.count,
+    const entry = await prisma.waitlist.findUnique({
+      where: { email: data.email },
     });
-    await waitlistEntry.save();
+
+    if (entry) {
+      return {
+        message: "error",
+        error: "Email already exists in the waitlist",
+      };
+    }
+
+    const counter = await prisma.waitlistCounter.upsert({
+      where: { id: "unique-counter-id" },
+      update: { count: { increment: 1 } },
+      create: { count: 1 },
+    });
+
+    const waitlistEntry = await prisma.waitlist.create({
+      data: {
+        name: data.name,
+        email: data.email,
+        place: counter.count,
+      },
+    });
   } catch (error) {
+    console.log(error);
     return {
       message: "error",
       error: "Failed to save to database. Please try again later",

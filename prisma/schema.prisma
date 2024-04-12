@@ -1,0 +1,23 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Waitlist {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String   @unique
+  use       String?
+  place     Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model WaitlistCounter {
+  id    String @id @default(cuid()) @map("_id") @db.ObjectId
+  count Int    @default(0)
+}

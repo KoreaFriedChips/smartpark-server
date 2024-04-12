@@ -1,6 +1,3 @@
-import Script from "next/script";
-import Head from "next/head";
-import { Html } from "next/document";
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -38,7 +35,6 @@ export default function RootLayout({
         <Script src="https://widget.prefinery.com/widget/v2/ctwzqz1c.js" strategy="afterInteractive" defer /> */}
         {children}
         <script> </script>
-        <link rel="stylesheet" href="/fonts/soliden.css" />
       </body>
     </html>
   );

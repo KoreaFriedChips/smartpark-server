@@ -30,17 +30,17 @@
     src: url("./Soliden-SemiBoldOblique.woff2") format("woff2");
 }
 
-/* @font-face {
+@font-face {
     font-family: "Soliden";
     font-style: normal;
     font-weight: 700;
     font-display: swap;
     src: url("./Soliden-Bold.woff2") format("woff2");
-} */
+}
 
 @font-face {
     font-family: "Soliden";
-    font-style: normal;
+    font-style: italic;
     font-weight: 700;
     font-display: swap;
     src: url("./Soliden-BoldOblique.woff2") format("woff2");
