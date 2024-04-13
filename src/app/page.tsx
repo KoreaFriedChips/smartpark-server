@@ -39,7 +39,7 @@ export default function Home({ searchParams }: SearchParamProps) {
                 {/* <a href={"/?show=true"} className={styles.buttonMain} role="button"> */}
                 <Link href={"?show=true"} className={styles.buttonMain} role="button">
                   <Sparkles size={18} />
-                  <p>Join early access</p>
+                  <p>Join waitlist</p>
                 </Link>
                 <div className={styles.buttonDetails}>
                   <p>&lt;15 seconds</p>
@@ -55,7 +55,18 @@ export default function Home({ searchParams }: SearchParamProps) {
         </div>
         <Image src={"/SMARTPARK-DEMO-2.png"} alt="SmartPark demo" className={styles.heroImage} width={1920} height={1080} priority />
       </main>
-      {/* <main className={styles.section}></main> */}
+      {/* <main className={styles.section}>
+        <div className={styles.hero}>
+          <p className={styles.shadowText}>WHAT IS SMARTPARK?</p>
+          <h1 className={styles.subtitle}>
+            <i>Don't waste time looking for parking.</i>
+          </h1>
+          <h1 className={styles.subtitleBold}>
+            Try SmartPark.
+          </h1>
+          <p className={styles.description}>SmartPark is a real-time online marketplace that connects drivers with private parking spaces, enabling users to securely list and bid on spots.</p>
+        </div>
+      </main> */}
     </>
   );
 }

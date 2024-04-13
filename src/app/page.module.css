@@ -38,7 +38,7 @@
   align-items: center;
   /* padding: 12rem 6rem 10rem 6rem; */
   padding: 10rem 6rem 4rem 6rem;
-  border-bottom: 1px solid var(--line-alt);
+  /* border-bottom: 1px solid var(--line-alt); */
 }
 
 .main {
@@ -83,6 +83,21 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.subtitle, .subtitleBold {
+  color: var(--primary);
+  font-size: 3.5rem;
+  text-align: center;
+}
+
+.subtitle {
+  font-weight: 700;
+}
+
+.subtitleBold {
+  font-weight: 800;
+  margin-bottom: 1rem;
 }
 
 .description {
@@ -183,7 +198,8 @@
   }
 
   .main {
-    padding: 7.5rem 1rem 1rem 1rem;
+    /* padding: 7.5rem 1rem 1rem 1rem; */
+    padding: 7.5rem 1rem 0 1rem;
   }
 
   .heroImage {

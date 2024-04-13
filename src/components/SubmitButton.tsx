@@ -11,7 +11,7 @@ export default function SubmitButton() {
     <>
       <button className={styles.buttonMain} type="submit" disabled={pending}>
         <Sparkles size={18} />
-        Join waitlist
+        Join now
       </button>
       {pending && <p className={styles.error}>Adding you to the waitlist...</p>}
     </>
