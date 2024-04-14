@@ -25,6 +25,10 @@
   width: 100%;
 }
 
+.footer .logo {
+  opacity: 0.8;
+}
+
 .footer .headerContainer {
   flex-direction: column;
   gap: 0.75rem;
@@ -434,6 +438,7 @@
     flex-direction: column;
     width: auto;
     align-items: center;
+    padding-bottom: 0.75rem;
   }
 
   .main {
@@ -500,6 +505,10 @@
   .buttonBox {
     flex-direction: column-reverse;
     margin-top: -1rem;
+  }
+
+  .bentoContainer {
+    margin-top: 1rem;
   }
 
   .bentoRow {

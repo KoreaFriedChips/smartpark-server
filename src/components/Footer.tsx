@@ -12,8 +12,11 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.headerContainer}>
-        <a href="/" className={styles.logo}>
+        {/* <a href="#" className={styles.logo}>
           <Image src={"/SMARTPARK-WAITLIST-ICON.png"} alt="SmartPark Logo" width={35} height={35} priority />
+        </a> */}
+        <a href="#" className={styles.logo}>
+          <Image src={colorScheme === "dark" ? "/SMARTPARK-WEB-LOGO-DARK.png" : "/SMARTPARK-WEB-LOGO-LIGHT.png"} alt="SmartPark Logo" width={175} height={26} priority />
         </a>
         <nav className={styles.nav}>
         <p className={styles.footerText}>©️ 2024 SMARTPARK DIGITAL LLC.</p>

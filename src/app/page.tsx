@@ -61,7 +61,7 @@ export default function Home({ searchParams }: SearchParamProps) {
           <i>
             By joining the waitlist, you agree to SmartPark's{" "}
             <a href="#" target="_blank" className={styles.underline}>
-              Terms and Conditions
+              Terms of Service
             </a>{" "}
             and{" "}
             <a href="#" target="_blank" className={styles.underline}>

@@ -52,6 +52,7 @@ body {
   overflow-x: hidden;
   color: var(--primary);
   background: var(--main-background);
+  scroll-behavior: smooth;
 }
 
 a, p, h1, h2, h3, h4, h5, h6, span, div, button, input, label, select, option, textarea {
