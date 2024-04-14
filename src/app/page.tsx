@@ -74,9 +74,9 @@ export default function Home({ searchParams }: SearchParamProps) {
       <main className={styles.section}>
         <div className={styles.heroSection}>
           <div className={styles.hero}>
-            <p className={styles.shadowText}>WHAT IS SMARTPARK?</p>
+            <p className={styles.shadowText}>ONLINE PARKING MARKETPLACE</p>
             <h1 className={styles.subtitle}>
-              Online parking <i>marketplace</i>.
+              This is <i>SmartPark.</i>
             </h1>
             <p className={styles.subDescription}>Stop wasting time and money searching for parking. With SmartPark, find affordable parking spaces or list your own spot in seconds.</p>
           </div>
@@ -85,23 +85,28 @@ export default function Home({ searchParams }: SearchParamProps) {
           <div className={styles.bentoSection}>
             <div className={styles.bentoRow}>
               <div className={styles.bentoBox}>
-                <ParkingMeter size={28} className={styles.bentoIcon} />
-                <div className={styles.bentoText}>
-                  <h2 className={styles.bentoTitle}>Find parking in a tap.</h2>
-                  <p className={styles.bentoDescription}>
-                    Quickly locate affordable parking spaces near your destination using advanced search filters, allowing you to find your perfect spot instantly.
-                  </p>
+                <div className={styles.bentoItem}>
+                  <ParkingMeter size={28} className={styles.bentoIcon} />
+                  <div className={styles.bentoText}>
+                    <h2 className={styles.bentoTitle}>Find parking in a tap.</h2>
+                    <p className={styles.bentoDescription}>
+                      Quickly locate affordable parking spaces near your destination using advanced search filters, allowing you to find your perfect spot instantly.
+                    </p>
+                  </div>
                 </div>
+                {/* <div className={styles.overlayHorizontal}></div> */}
                 <div className={styles.bentoImage}>
-                  <Image src={"/SMARTPARK-DEMO-2.png"} alt="SmartPark demo" width={300} height={169} priority />
+                  <Image src={"/SMARTPARK-DEMO-4-SMALL.png"} alt="SmartPark demo" width={400} height={192} priority />
                 </div>
               </div>
               <div className={styles.bentoSection}>
                 <div className={styles.bentoBox}>
                   <Wallet size={28} className={styles.bentoIcon} />
                   <div className={styles.bentoText}>
-                    <h2 className={styles.bentoTitle}>Save time and money.</h2>
-                    <p className={styles.bentoDescription}>Compare prices and bid on the best deals based on your desired parking duration, with real-time updates to ensure you always have access to the most current availability.</p>
+                    <h2 className={styles.bentoTitle}>Save time & money.</h2>
+                    <p className={styles.bentoDescription}>
+                      Compare prices and bid on the best deals based on your desired parking duration, with real-time updates to ensure you always have access to the most current availability.
+                    </p>
                   </div>
                 </div>
                 <div className={styles.bentoBox}>
@@ -122,8 +127,13 @@ export default function Home({ searchParams }: SearchParamProps) {
               <HandHeart size={28} className={styles.bentoIcon} />
               <div className={styles.bentoText}>
                 <h2 className={styles.bentoTitle}>Community-driven platform.</h2>
-                <p className={styles.bentoDescription}>Join a growing community of users who are revolutionizing the way we think about parking. Help shape the future by providing feedback and suggestions to the SmartPark team.</p>
+                <p className={styles.bentoDescription}>
+                  Join a growing community of users who are revolutionizing the way we think about parking. Help shape the future by providing feedback and suggestions to the SmartPark team.
+                </p>
               </div>
+              <div className={styles.bentoImageSide}>
+                  <Image src={"/SMARTPARK-DEMO-SMALL-ALT.png"} alt="SmartPark demo" width={300} height={176} priority />
+                </div>
             </div>
           </div>
         </div>

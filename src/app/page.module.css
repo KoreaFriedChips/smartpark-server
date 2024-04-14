@@ -49,7 +49,7 @@
 
 .section {
   padding: 6rem 6rem 4rem 6rem;
-  background: radial-gradient(circle at bottom right, var(--accent-alt) -400%, var(--main-background) 60%);
+  background: radial-gradient(circle at bottom right, var(--accent-alt) -300%, var(--main-background) 40%);
 }
 
 .hero {
@@ -215,40 +215,90 @@
   gap: 1rem;
 }
 
+.bentoItem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1.5rem;
+}
+
 .bentoBox {
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
-  justify-content: stretch;
-  align-items: stretch;
+  justify-content: space-between !important;
   gap: 1.25rem;
   padding: 1.75rem 1.5rem;
+  /* padding: 1.5rem 1.25rem; */
   border-radius: 0.5rem;
   /* border-top: 0.5px solid var(--line);
   border-bottom: 0.5px solid var(--line-alt); */
   border: 0.5px solid var(--line-alt);
+  background: var(--main-background);
+  /* backdrop-filter: blur(4px); */
+  position: relative;
   cursor: pointer;
+  overflow: hidden;
   box-sizing: border-box;
   box-shadow: 2px 4px 5.5px var(--shadow);
   transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.bentoImage {
-  align-self: center;
+/* .bentoBox:has(.bentoImage) {
+  padding-bottom: 0;
+} */
+
+.overlayVertical, .overlayHorizontal {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.overlayVertical {
+  background: linear-gradient(0deg, var(--main-background) 5%, transparent 80%);
+}
+
+.overlayHorizontal {
+  background: linear-gradient(90deg, var(--main-background) 0%, transparent 40%, transparent 60%, var(--main-background) 100%);
+}
+
+.bentoImage, .bentoImageSide {
+  margin-top: 1rem;
+  /* height: 100%; */
+  display: flex;
+  justify-self: flex-end !important;
+  align-self: center !important;
+}
+
+.bentoImageSide {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.bentoImage img, .bentoImageSide img {
+  z-index: 0;
 }
 
 .bentoIcon {
   color: var(--accent);
   opacity: 0.75;
   transition: all 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  z-index: 2;
 }
 
 .bentoText {
   display: flex;
   flex-direction: column;
+  position: relative;
   justify-content: center;
   align-items: stretch;
   gap: 0.75rem;
+  z-index: 2;
 }
 
 .bentoTitle {
@@ -262,18 +312,13 @@
   font-size: 1rem;
   line-height: 1.5rem;
   color: var(--third);
+  max-width: 500px;
   opacity: 0.9;
 }
 
 @media (prefers-color-scheme: light) {
   .bentoIcon {
     color: var(--line);
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .bentoBox:hover .bentoIcon {
-      color: var(--primary);
-    }
   }
 }
 
@@ -291,7 +336,11 @@
   }
 
   .bentoBox:hover .bentoIcon {
-    color: var(--accent-alt);
+    color: var(--primary);
+  }
+
+  .bentoBox:hover .overlayVertical, .bentoBox:hover .overlayHorizontal {
+    opacity: 0;
   }
 
   .button:hover {
@@ -316,6 +365,10 @@
   .section {
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+
+  .bentoDescription {
+    max-width: 350px;
   }
 }
 
@@ -397,6 +450,19 @@
 
   .bentoRow {
     flex-direction: column;
+  }
+
+  .bentoBox:has(.bentoImageSide) {
+    padding-bottom: 0;
+  }
+
+  .bentoImageSide {
+    position: relative;
+  }
+
+  .bentoImage img, .bentoImageSide img {
+    width: 100%;
+    height: auto;
   }
 }
 
