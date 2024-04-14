@@ -5,7 +5,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import Header from "../components/Header";
 import Link from "next/link";
-import { Sparkles, Clapperboard } from "lucide-react";
+import { Sparkles, Clapperboard, Car, ParkingCircle, BadgeDollarSign, Wallet, ParkingMeter, HandHeart } from "lucide-react";
 import Script from "next/script";
 import Modal from "@/components/Modal";
 
@@ -39,7 +39,7 @@ export default function Home({ searchParams }: SearchParamProps) {
                 {/* <a href={"/?show=true"} className={styles.buttonMain} role="button"> */}
                 <Link href={"?show=true"} className={styles.buttonMain} role="button">
                   <Sparkles size={18} />
-                  <p>Join waitlist</p>
+                  <p>Join the waitlist</p>
                 </Link>
                 <div className={styles.buttonDetails}>
                   <p>&lt;15 seconds</p>
@@ -54,19 +54,80 @@ export default function Home({ searchParams }: SearchParamProps) {
           </div>
         </div>
         <Image src={"/SMARTPARK-DEMO-2.png"} alt="SmartPark demo" className={styles.heroImage} width={1920} height={1080} priority />
+        <p className={styles.miniDescription}>
+          *Available for download on the Apple App Store and Google Play Store on <i>May 30th</i>.
+        </p>
+        <p className={styles.tiniDescription}>
+          <i>
+            By joining the waitlist, you agree to SmartPark's{" "}
+            <a href="#" target="_blank" className={styles.underline}>
+              Terms and Conditions
+            </a>{" "}
+            and{" "}
+            <a href="#" target="_blank" className={styles.underline}>
+              Privacy Policy
+            </a>
+          </i>
+          .
+        </p>
       </main>
-      {/* <main className={styles.section}>
-        <div className={styles.hero}>
-          <p className={styles.shadowText}>WHAT IS SMARTPARK?</p>
-          <h1 className={styles.subtitle}>
-            <i>Don't waste time looking for parking.</i>
-          </h1>
-          <h1 className={styles.subtitleBold}>
-            Try SmartPark.
-          </h1>
-          <p className={styles.description}>SmartPark is a real-time online marketplace that connects drivers with private parking spaces, enabling users to securely list and bid on spots.</p>
+      <main className={styles.section}>
+        <div className={styles.heroSection}>
+          <div className={styles.hero}>
+            <p className={styles.shadowText}>WHAT IS SMARTPARK?</p>
+            <h1 className={styles.subtitle}>
+              Online parking <i>marketplace</i>.
+            </h1>
+            <p className={styles.subDescription}>Stop wasting time and money searching for parking. With SmartPark, find affordable parking spaces or list your own spot in seconds.</p>
+          </div>
         </div>
-      </main> */}
+        <div className={styles.bentoContainer}>
+          <div className={styles.bentoSection}>
+            <div className={styles.bentoRow}>
+              <div className={styles.bentoBox}>
+                <ParkingMeter size={28} className={styles.bentoIcon} />
+                <div className={styles.bentoText}>
+                  <h2 className={styles.bentoTitle}>Find parking in a tap.</h2>
+                  <p className={styles.bentoDescription}>
+                    Quickly locate affordable parking spaces near your destination using advanced search filters, allowing you to find your perfect spot instantly.
+                  </p>
+                </div>
+                <div className={styles.bentoImage}>
+                  <Image src={"/SMARTPARK-DEMO-2.png"} alt="SmartPark demo" width={300} height={169} priority />
+                </div>
+              </div>
+              <div className={styles.bentoSection}>
+                <div className={styles.bentoBox}>
+                  <Wallet size={28} className={styles.bentoIcon} />
+                  <div className={styles.bentoText}>
+                    <h2 className={styles.bentoTitle}>Save time and money.</h2>
+                    <p className={styles.bentoDescription}>Compare prices and bid on the best deals based on your desired parking duration, with real-time updates to ensure you always have access to the most current availability.</p>
+                  </div>
+                </div>
+                <div className={styles.bentoBox}>
+                  <BadgeDollarSign size={28} className={styles.bentoIcon} />
+                  {/* <div className={styles.bentoImage}>
+                  <Image src={"/SMARTPARK-DEMO-1.png"} alt="SmartPark demo" width={1920} height={1080} priority />
+                </div> */}
+                  <div className={styles.bentoText}>
+                    <h2 className={styles.bentoTitle}>Earn real $$$.</h2>
+                    <p className={styles.bentoDescription}>
+                      Earn passive income by listing your properties on SmartPark's secure platform, which seamlessly manages payment processing and customer support.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className={styles.bentoBox}>
+              <HandHeart size={28} className={styles.bentoIcon} />
+              <div className={styles.bentoText}>
+                <h2 className={styles.bentoTitle}>Community-driven platform.</h2>
+                <p className={styles.bentoDescription}>Join a growing community of users who are revolutionizing the way we think about parking. Help shape the future by providing feedback and suggestions to the SmartPark team.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
     </>
   );
 }

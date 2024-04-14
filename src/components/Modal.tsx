@@ -51,7 +51,7 @@ export default function Modal() {
             <>
               <div className={styles.inputContainer}>
                 <CircleUserRound className={styles.inputIcon} size={16} />
-                <input type="text" placeholder="Full name..." name="name" autoCorrect="false" autoCapitalize="true" autoComplete="given-name" required />
+                <input type="text" placeholder="Name..." name="name" autoCorrect="false" autoCapitalize="true" autoComplete="given-name" required />
               </div>
               <div className={styles.inputContainer}>
                 <Mail className={styles.inputIcon} size={16} />

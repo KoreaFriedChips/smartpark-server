@@ -31,19 +31,25 @@
   transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.main, .section {
+.main,
+.section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   /* padding: 12rem 6rem 10rem 6rem; */
-  padding: 10rem 6rem 4rem 6rem;
-  /* border-bottom: 1px solid var(--line-alt); */
+  border-bottom: 1px solid var(--line-alt);
 }
 
 .main {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   background: radial-gradient(circle at bottom, var(--accent-alt) -200%, var(--main-background) 60%);
+  padding: 10rem 6rem 2rem 6rem;
+}
+
+.section {
+  padding: 6rem 6rem 4rem 6rem;
+  background: radial-gradient(circle at bottom right, var(--accent-alt) -400%, var(--main-background) 60%);
 }
 
 .hero {
@@ -54,7 +60,7 @@
 }
 
 .heroImage {
-  margin-top: -10rem;
+  margin-top: -11.5rem;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
@@ -64,6 +70,7 @@
   /* aspect-ratio: 16 / 9; */
   /* cursor: pointer; */
   /* position: absolute; */
+  opacity: 0.9;
 }
 
 .shadowText {
@@ -85,30 +92,53 @@
   -webkit-text-fill-color: transparent;
 }
 
-.subtitle, .subtitleBold {
-  color: var(--primary);
-  font-size: 3.5rem;
-  text-align: center;
-}
-
 .subtitle {
+  color: var(--primary);
+  text-align: center;
   font-weight: 700;
+  font-size: 3.2rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
 }
 
-.subtitleBold {
-  font-weight: 800;
-  margin-bottom: 1rem;
-}
-
-.description {
+.description,
+.subDescription,
+.miniDescription,
+.tiniDescription {
   color: var(--secondary);
   opacity: 0.9;
   /* font-weight: 600; */
-  font-size: 1.25rem;
-  line-height: 1.5rem;
   margin-bottom: 2.5rem;
   max-width: 850px;
   text-align: center;
+}
+
+.description {
+  font-size: 1.25rem;
+  line-height: 1.65rem;
+}
+
+.subDescription {
+  max-width: 750px;
+  font-size: 1.15rem;
+  line-height: 1.4rem;
+}
+
+.miniDescription {
+  opacity: 0.5;
+  color: var(--primary);
+  margin-top: -2rem;
+}
+
+.tiniDescription {
+  opacity: 0.5;
+  color: var(--third);
+  margin-top: -1.75rem;
+  font-size: 0.8rem;
+}
+
+.underline {
+  text-decoration: underline;
 }
 
 .buttonContainer {
@@ -162,24 +192,131 @@
   z-index: 0;
 }
 
+.bentoContainer {
+  max-width: 1000px;
+  margin-top: 2rem;
+}
+
+.bentoSection {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  gap: 1rem;
+  /* background: radial-gradient(circle at top left, var(--accent-alt) -600%, var(--main-background) 40%); */
+}
+
+.bentoRow {
+  display: flex;
+  justify-content: stretch;
+  align-items: stretch;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.bentoBox {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  gap: 1.25rem;
+  padding: 1.75rem 1.5rem;
+  border-radius: 0.5rem;
+  /* border-top: 0.5px solid var(--line);
+  border-bottom: 0.5px solid var(--line-alt); */
+  border: 0.5px solid var(--line-alt);
+  cursor: pointer;
+  box-sizing: border-box;
+  box-shadow: 2px 4px 5.5px var(--shadow);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.bentoImage {
+  align-self: center;
+}
+
+.bentoIcon {
+  color: var(--accent);
+  opacity: 0.75;
+  transition: all 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.bentoText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 0.75rem;
+}
+
+.bentoTitle {
+  font-size: 1.35rem;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.bentoDescription {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: var(--third);
+  opacity: 0.9;
+}
+
+@media (prefers-color-scheme: light) {
+  .bentoIcon {
+    color: var(--line);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .bentoBox:hover .bentoIcon {
+      color: var(--primary);
+    }
+  }
+}
+
 @media (hover: hover) and (pointer: fine) {
   .logo:hover {
     opacity: 1;
   }
 
   .button:hover,
-  .buttonMain:hover {
+  .buttonMain:hover,
+  .bentoBox:hover {
     background: var(--line-alt);
     color: var(--primary);
     box-shadow: 4px 8px 5.5px var(--shadow);
   }
 
+  .bentoBox:hover .bentoIcon {
+    color: var(--accent-alt);
+  }
+
   .button:hover {
     text-decoration: underline;
+  }
+
+  .underline:hover {
+    color: var(--primary);
   }
 }
 
 @media (prefers-reduced-motion) {
+}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) and (max-width: 1024px) {
+  .main {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  .section {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
 /* Mobile */
@@ -202,6 +339,10 @@
     padding: 7.5rem 1rem 0 1rem;
   }
 
+  .section {
+    padding: 4.5rem 1rem 2.5rem 1rem;
+  }
+
   .heroImage {
     width: 1350px;
     height: 759px;
@@ -217,9 +358,23 @@
     font-weight: 700;
   }
 
+  .subtitle {
+    font-size: 2.75rem;
+  }
+
   .description {
     font-size: 1rem;
     line-height: 1.5rem;
+  }
+
+  .subDescription {
+    font-size: 0.9rem;
+    line-height: 1.35rem;
+    margin-bottom: 1rem;
+  }
+
+  .miniDescription {
+    margin-top: -2rem;
   }
 
   .buttonContainer {
@@ -239,10 +394,10 @@
     flex-direction: column-reverse;
     margin-top: -1rem;
   }
-}
 
-/* Tablet and Smaller Desktop */
-@media (min-width: 701px) and (max-width: 1120px) {
+  .bentoRow {
+    flex-direction: column;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
