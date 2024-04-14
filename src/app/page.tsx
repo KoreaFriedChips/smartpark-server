@@ -128,12 +128,13 @@ export default function Home({ searchParams }: SearchParamProps) {
               <div className={styles.bentoText}>
                 <h2 className={styles.bentoTitle}>Community-driven platform.</h2>
                 <p className={styles.bentoDescription}>
-                  Join a growing community of users who are revolutionizing the way we think about parking. Help shape the future of parking by providing feedback and suggestions to the SmartPark team. We'll listen!
+                  Join a growing community of users who are revolutionizing the way we think about parking. Help shape the future of parking by providing feedback and suggestions to the SmartPark
+                  team. We'll listen!
                 </p>
               </div>
               <div className={styles.bentoImageSide}>
-                  <Image src={"/SMARTPARK-DEMO-SMALL-ALT.png"} alt="SmartPark demo" width={300} height={176} priority />
-                </div>
+                <Image src={"/SMARTPARK-DEMO-SMALL-ALT.png"} alt="SmartPark demo" width={300} height={176} priority />
+              </div>
             </div>
           </div>
         </div>
