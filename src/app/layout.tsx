@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "SmartPark: Online Parking Marketplace",
@@ -31,11 +31,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {/* <Script strategy="beforeInteractive">{`prefinery = window.prefinery || function() {(window.prefinery.q = window.prefinery.q || []).push(arguments)};`}</Script>
-        <Script src="https://widget.prefinery.com/widget/v2/ctwzqz1c.js" strategy="afterInteractive" defer /> */}
         {children}
         <script> </script>
+        <Footer />
       </body>
+      
     </html>
   );
 }

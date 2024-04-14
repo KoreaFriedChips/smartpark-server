@@ -54,9 +54,9 @@ export default function Home({ searchParams }: SearchParamProps) {
           </div>
         </div>
         <Image src={"/SMARTPARK-DEMO-2.png"} alt="SmartPark demo" className={styles.heroImage} width={1920} height={1080} priority />
-        <p className={styles.miniDescription}>
+        {/* <p className={styles.miniDescription}>
           *Available for download on the Apple App Store and Google Play Store on <i>May 30th</i>.
-        </p>
+        </p> */}
         <p className={styles.tiniDescription}>
           <i>
             By joining the waitlist, you agree to SmartPark's{" "}
@@ -74,7 +74,7 @@ export default function Home({ searchParams }: SearchParamProps) {
       <main className={styles.section}>
         <div className={styles.heroSection}>
           <div className={styles.hero}>
-            <p className={styles.shadowText}>ONLINE PARKING MARKETPLACE</p>
+            <p className={styles.shadowText}>ONLINE MARKETPLACE</p>
             <h1 className={styles.subtitle}>
               This is <i>SmartPark.</i>
             </h1>
@@ -117,7 +117,7 @@ export default function Home({ searchParams }: SearchParamProps) {
                   <div className={styles.bentoText}>
                     <h2 className={styles.bentoTitle}>Earn real $$$.</h2>
                     <p className={styles.bentoDescription}>
-                      Earn passive income by listing your properties on SmartPark's secure platform, which seamlessly manages payment processing and customer support.
+                      Earn passive income by listing your driveway, yard, or other property on SmartPark's secure platform, seamlessly managing payment processing and customer support.
                     </p>
                   </div>
                 </div>
@@ -128,7 +128,7 @@ export default function Home({ searchParams }: SearchParamProps) {
               <div className={styles.bentoText}>
                 <h2 className={styles.bentoTitle}>Community-driven platform.</h2>
                 <p className={styles.bentoDescription}>
-                  Join a growing community of users who are revolutionizing the way we think about parking. Help shape the future by providing feedback and suggestions to the SmartPark team.
+                  Join a growing community of users who are revolutionizing the way we think about parking. Help shape the future of parking by providing feedback and suggestions to the SmartPark team. We'll listen!
                 </p>
               </div>
               <div className={styles.bentoImageSide}>
