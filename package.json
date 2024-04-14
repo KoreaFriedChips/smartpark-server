@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "npx prisma generate --no-engine && npx @cloudflare/next-on-pages@1"
+    "deploy": "npx prisma generate --no-engine && npx @cloudflare/next-on-pages@1",
+    "test": "npx @cloudflare/next-on-pages@1 && wrangler pages dev .vercel/output/static/ --live-reload",
+    "pushschema": "dotenv -f .env.local run -- npx prisma db push"
   },
   "dependencies": {
     "@clerk/clerk-sdk-node": "^4.13.12",
