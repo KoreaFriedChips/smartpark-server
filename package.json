@@ -12,11 +12,16 @@
     "pushschema": "dotenv -f .env.local run -- npx prisma db push"
   },
   "dependencies": {
-    "@clerk/clerk-sdk-node": "^4.13.12",
+    "@clerk/backend": "^0.38.6",
     "@prisma/client": "^5.12.1",
     "@prisma/extension-accelerate": "^1.0.0",
+    "@tsndr/cloudflare-worker-jwt": "^2.5.3",
     "@tsparticles/react": "^3.0.0",
+    "@types/jsonwebtoken": "^9.0.6",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "js-cookie": "^3.0.5",
+    "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.365.0",
     "mongoose": "^8.2.4",
     "next": "^14.2.1",
@@ -28,6 +33,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
