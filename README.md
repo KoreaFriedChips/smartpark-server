@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SmartPark Server
 
-## Getting Started
+## Requirements
+- Node >= v21.7
+- npm >= 10.5
+- Wrangler >= 3.41
 
-First, run the development server:
+## Setup
+Run `npm i` to install all dependencies.    
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Install `wrangler` globally using `npm install -g wrangler`.
+Log into your Cloudflare account using `wrangler login`.
+
+In the root directory, create one file: `.env.local`. These
+store the environment variables to setup the application.
+
+`.env.local` requires:
+- `DATABASE_URL`
+    - Available in Notion
+- `CLERK_PUBLIC`
+    - Available in Notion
+- `CLERK_SECRET_KEY`
+    - Can find this on the Clerk website
+- `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`
+    - Can find this on the Clerk website
+
+Here's an example `.env.local`:
+```
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_XXXXX
+CLERK_SECRET_KEY=sk_test_XXXXX
+CLERK_PUBLIC="-----BEGIN PUBLIC KEY-----\nXXXXX\n-----END PUBLIC KEY-----"
+DATABASE_URL="mongodb+srv://XXXXX"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Running
+Run `npx prisma generate` to generate the Prisma client. 
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+There are two ways to run the server locally. The first way is the simplest—run
+`npm run start`. However, there are caveats. If we want to test out how
+Cloudflare specific runtime environments work (such as connecting to an R2
+bucket), using this command won't work. If you're not testing anything with
+Cloudflare, don't worry about this.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+We can create a "mini-flare" setup that emulates a Cloudflare production
+environment locally. Using `npm run test` to do that. Make sure you have
+`wrangler` installed and logged in. 
 
-## Learn More
+## Database
+We use Prisma as a layer between our application and our database (as of right
+now, MongoDB). In order to update the database schema globally, use `npm run
+pushschema`. Note: ***under no circumstances should anyone run this command
+without explicit permission from all developers. Modifying the schema
+serendipidously could break others' development environments and/or the
+production environment itself.***
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Deployment
+Deployment is automatic on push. Pushing to the master branch deploys directly
+to `trysmartpark.com`. Pushing to any other branch also deploys to Cloudflare,
+but on a different URL. Refer to the Cloudflare dashboard to find it. 

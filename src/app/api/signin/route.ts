@@ -1,14 +1,16 @@
 import { getUser } from "@/app/utils";
 import { NextRequest, NextResponse } from "next/server";
 
-type ResponseData = {
-    message: string;
-};
+/* 
+Protected route
 
-type RequestData = {
-    token: string;
-};
+- token
+- birthday
+- email
+- name
+- phone number
 
+*/
 export const POST = async (
     req: NextRequest
 ) => {
