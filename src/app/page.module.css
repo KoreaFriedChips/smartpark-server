@@ -17,7 +17,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.85rem 2.5rem;
+  /* padding: 1.85rem 2.5rem; */
+  padding: 1.25rem 2.5rem;
   padding-bottom: 1.25rem;
 }
 
@@ -41,17 +42,19 @@
 }
 
 .footer .nav {
-  border-top: 0.5px solid var(--line-alt);
-  padding-top: 1rem;
+  /* border-top: 0.5px solid var(--line-alt); */
+  /* padding-top: 1rem; */
   justify-content: space-between;
-  /* align-items: flex-start; */
+  align-items: center;
   width: 100%;
 }
 
 .footerText {
   color: var(--third);
   text-align: center;
-  margin-top: 0.25rem;
+  font-style: italic;
+  opacity: 0.8;
+  /* margin-top: 0.25rem; */
   font-size: 1rem;
 }
 
@@ -73,7 +76,8 @@
 }
 
 .main,
-.section {
+.section,
+.sectionAlt {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -91,6 +95,11 @@
 .section {
   padding: 6rem;
   background: radial-gradient(circle at bottom right, var(--accent-alt) -300%, var(--main-background) 40%);
+}
+
+.sectionAlt {
+  padding: 6rem;
+  background: radial-gradient(circle at left, var(--accent) -200%, var(--main-background) 40%);
 }
 
 .hero {
@@ -235,7 +244,7 @@
 }
 
 .bentoContainer {
-  max-width: 1000px;
+  /* max-width: 1000px; */
   margin-top: 2rem;
 }
 
@@ -257,6 +266,11 @@
   gap: 1rem;
 }
 
+.sectionAlt .bentoRow {
+  flex-direction: row-reverse;
+  gap: 4rem;
+}
+
 .bentoItem {
   display: flex;
   flex-direction: column;
@@ -265,7 +279,7 @@
   gap: 1.5rem;
 }
 
-.bentoBox {
+.bentoBox, .selectBox {
   display: flex;
   flex-direction: column;
   justify-content: space-between !important;
@@ -326,11 +340,10 @@
   z-index: 0;
 }
 
-.bentoIcon {
+.bentoIcon, .selectBoxIcon {
   color: var(--accent);
   opacity: 0.75;
   transition: all 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
-  z-index: 2;
 }
 
 .bentoText {
@@ -340,22 +353,43 @@
   justify-content: center;
   align-items: stretch;
   gap: 0.75rem;
-  z-index: 2;
 }
 
-.bentoTitle {
+.bentoTitle, .selectBoxTitle {
   font-size: 1.35rem;
   letter-spacing: -0.035em;
   font-weight: 700;
   color: var(--primary);
 }
 
-.bentoDescription {
+.bentoDescription, .selectBoxDescription {
   font-size: 1rem;
   line-height: 1.5rem;
   color: var(--third);
   max-width: 500px;
   opacity: 0.9;
+}
+
+.selectBox {
+  /* background: transparent; */
+  padding: 1.25rem 1.5rem;
+  gap: 1rem;
+  width: 400px;
+}
+
+.selectBoxIcon {
+  color: var(--accent-alt);
+}
+
+.selectBoxTitle {
+  font-size: 1.25rem;
+  line-height: 1.15rem;
+}
+
+.selectBoxDescription {
+  margin-top: -0.25rem;
+  font-size: 0.95rem;
+  line-height: 1.45rem;
 }
 
 @media (prefers-color-scheme: light) {
@@ -371,7 +405,8 @@
 
   .button:hover,
   .buttonMain:hover,
-  .bentoBox:hover {
+  .bentoBox:hover,
+  .selectBox:hover {
     background: var(--line-alt);
     color: var(--primary);
     box-shadow: 4px 8px 5.5px var(--shadow);
@@ -404,7 +439,7 @@
     padding-right: 3rem;
   }
 
-  .section {
+  .section, .sectionAlt {
     padding-left: 2rem;
     padding-right: 2rem;
   }
@@ -445,7 +480,7 @@
     padding: 7.5rem 1rem 0 1rem;
   }
 
-  .section {
+  .section, .sectionAlt {
     padding: 4.5rem 1rem 2.5rem 1rem;
   }
 

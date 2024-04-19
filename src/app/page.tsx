@@ -117,7 +117,7 @@ export default function Home({ searchParams }: SearchParamProps) {
                   <div className={styles.bentoText}>
                     <h2 className={styles.bentoTitle}>Earn real $$$.</h2>
                     <p className={styles.bentoDescription}>
-                      Earn passive income by listing your driveway, yard, or other property on SmartPark's secure platform, seamlessly managing payment processing and customer support.
+                      Earn passive income by listing your driveway, yard, or other property on SmartPark's secure platform, seamlessly managing cashless payment processing and customer support.
                     </p>
                   </div>
                 </div>
@@ -139,6 +139,36 @@ export default function Home({ searchParams }: SearchParamProps) {
           </div>
         </div>
       </main>
+      {/* <main className={styles.sectionAlt}>
+        <div className={styles.heroSection}>
+          <div className={styles.hero}>
+            <p className={styles.shadowText}>HOW IT WORKS</p>
+            <h1 className={styles.subtitle}>
+              <i>Clicks away</i> from your next spot.
+            </h1>
+            <p className={styles.subDescription}>With SmartPark's advanced features and intuitive functionality, find parking anywhere in seconds.</p>
+          </div>
+        </div>
+        <div className={styles.bentoContainer}>
+          <div className={styles.bentoRow}>
+            <div className={styles.bentoSection}>
+              <div className={styles.selectBox}>
+                <HandHeart size={24} className={styles.selectBoxIcon} />
+                <div className={styles.bentoText}>
+                  <h2 className={styles.selectBoxTitle}>Community-driven platform.</h2>
+                  <p className={styles.selectBoxDescription}>
+                    Join a growing community of users who are revolutionizing the way we think about parking. Help shape the future of parking by providing feedback and suggestions to the SmartPark
+                    team. We'll listen!
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className={styles.bentoSection}>
+              <Image src={"/SMARTPARK-DEMO-SMALL-ALT.png"} alt="SmartPark demo" width={500} height={293} priority />
+            </div>
+          </div>
+        </div>
+      </main> */}
     </>
   );
 }
