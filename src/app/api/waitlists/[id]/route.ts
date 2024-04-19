@@ -49,7 +49,7 @@ export const DELETE = async (
 ) => {
   
   try {
-    const data = await req.json();
+    // const data = await req.json();
     // const payload = await getUser(data);
     // if (!payload) return NextResponse.json({ error: "Bad JWT" }, { status: 403 });
     if (!params.id) {

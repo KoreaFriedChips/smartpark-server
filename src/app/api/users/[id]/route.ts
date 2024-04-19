@@ -45,7 +45,7 @@ export const DELETE = async (
     {params}: {params: { id: string } }
 ) => {
   try {
-    const data = await req.json();
+    // const data = await req.json();
     // const payload = await getUser(data);
     // if (!payload) return NextResponse.json({ error: "Bad JWT" }, { status: 403 });
 
@@ -72,6 +72,7 @@ export const DELETE = async (
     return NextResponse.json({ message: "success"});
   } catch (error) {
     console.log("User delete failed");
+    console.log(error);
     return NextResponse.json({ error: "Internal Server error"}, {status:500});
   }
 }
