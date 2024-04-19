@@ -1,7 +1,7 @@
 "use server";
 
 import { z } from "zod";
-import { PrismaClient } from "@prisma/client/edge";
+import { PrismaClient } from "@prisma/client/edge.js";
 import { cookies } from "next/headers";
 const prisma = new PrismaClient();
 const schema = z.object({
