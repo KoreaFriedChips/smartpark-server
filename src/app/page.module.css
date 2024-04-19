@@ -51,9 +51,8 @@
 .footerText {
   color: var(--third);
   text-align: center;
-  letter-spacing: 0.3rem;
   margin-top: 0.25rem;
-  font-size: 0.75rem;
+  font-size: 1rem;
 }
 
 .socialContainer {
@@ -90,7 +89,7 @@
 }
 
 .section {
-  padding: 6rem 6rem 8rem 6rem;
+  padding: 6rem;
   background: radial-gradient(circle at bottom right, var(--accent-alt) -300%, var(--main-background) 40%);
 }
 
@@ -346,7 +345,7 @@
 
 .bentoTitle {
   font-size: 1.35rem;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.035em;
   font-weight: 700;
   color: var(--primary);
 }

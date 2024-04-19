@@ -43,7 +43,7 @@ export default function Home({ searchParams }: SearchParamProps) {
                 </Link>
                 <div className={styles.buttonDetails}>
                   <p>&lt;15 seconds</p>
-                  <p>No commitment</p>
+                  <p>Opt out any time</p>
                 </div>
               </div>
               <a href="https://youtu.be/nu-ic3TmaVQ" target="_blank" className={styles.button} role="button">
