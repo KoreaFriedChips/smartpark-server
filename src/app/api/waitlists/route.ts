@@ -1,6 +1,9 @@
 import { getUser, searchParamsToJSON } from "@/app/utils";
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client/edge.js";
+import { WaitlistModel } from "@zod-prisma";
+import { z } from "zod";
+
 
 const prisma = new PrismaClient();
 
@@ -17,7 +20,7 @@ export const POST = async (
         return NextResponse.json({ error: "Email already exists in the waitlist" }, { status: 400 });
       }
 
-      const waitlist: Waitlist = await prisma.$transaction(async (prisma) => {
+      const waitlist: z.infer<typeof WaitlistModel> = await prisma.$transaction(async (prisma) => {
         const highestEntry = await prisma.waitlist.findFirst({
           orderBy: { place: "desc" },
         });
@@ -25,7 +28,7 @@ export const POST = async (
         let highestPlace = highestEntry && highestEntry.place != null ? highestEntry.place : 0;
         highestPlace += 1;
     
-        const waitlistEntry = await prisma.waitlist.create({
+        const waitlistEntry: Waitlist = await prisma.waitlist.create({
           data: {
             name: data.name,
             email: data.email,
@@ -52,17 +55,13 @@ export const GET = async (
   // if (!payload) return NextResponse.json({ error: "Bad JWT" }, { status: 403 })
     
   try {
-    const whereClause = searchParamsToJSON(req.nextUrl.searchParams);
-    const numberProperties = ["place"];
-    numberProperties.forEach((property) => {
-      if (property in whereClause) {
-        whereClause[property] = Number(whereClause[property]);
-      }
-    });
-    const waitlists = await prisma.waitlist.findMany({ where: whereClause });
+    const whereParams = WaitlistModel.partial().parse(searchParamsToJSON(req.nextUrl.searchParams));
+    console.log(whereParams);
+    const waitlists = await prisma.waitlist.findMany({ where: whereParams });
     return NextResponse.json({ data: waitlists });
   } 
   catch (error) {
+    console.log(error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

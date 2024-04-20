@@ -17,7 +17,7 @@ export const PUT = async (
       return NextResponse.json({ error: "Review id required" }, {status:400});
     }
 
-    const review = prisma.review.findUnique({
+    const review = await prisma.review.findUnique({
       where: {
         id: params.id,
       }
@@ -53,14 +53,14 @@ export const DELETE = async (
       return NextResponse.json({ error: "Review id required"}, {status:400});
     }
 
-    const review = prisma.review.findUnique({
+    const review = await prisma.review.findUnique({
       where: {
-        id: params.id
+        id: params.id,
       }
     });
 
     if (!review) {
-      return NextResponse.json({error: "Review id not found"}, {status:400});
+      return NextResponse.json({ error: "Review id not found "}, {status:400});
     }
 
     await prisma.review.delete({

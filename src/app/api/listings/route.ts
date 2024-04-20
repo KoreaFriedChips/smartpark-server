@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client/edge.js";
 import { searchParamsToJSON } from "@/app/utils";
 import { now } from "mongoose";
+import { z } from "zod";
+import { ListingModel } from "@zod-prisma";
+
 
 const prisma = new PrismaClient();
 
@@ -29,26 +32,12 @@ export const GET = async (
     req: NextRequest
 ) => {
   try {
-    const whereClause = searchParamsToJSON(req.nextUrl.searchParams);
-    const numberProperties = [
-      "latitude", 
-      "longitude", 
-      "distance", 
-      "price", 
-      "reviews", 
-      "bids",
-      "capacity", 
-      "spotsLeft", 
-    ]
-    numberProperties.forEach((property) => {
-      if (property in whereClause) {
-        whereClause[property] = Number(whereClause[property]);
-      }
-    });
-    const listings = await prisma.listing.findMany({ where: whereClause });
+    const whereParams: any = ListingModel.partial().parse(searchParamsToJSON(req.nextUrl.searchParams));
+    const listings = await prisma.listing.findMany({ where: whereParams });
     return NextResponse.json({ data: listings });
   } 
   catch (error) {
+    console.log(error);
     return NextResponse.json({error: "Internal server error"}, {status:500});
   }
 }

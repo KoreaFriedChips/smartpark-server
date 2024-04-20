@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client/edge.js";
-
 const prisma = new PrismaClient();
 
 export const PUT = async ( 
@@ -17,7 +16,7 @@ export const PUT = async (
       return NextResponse.json({ error: "Waitlist id required"}, { status: 400 });
     }
 
-    const waitlist = prisma.waitlist.findUnique({
+    const waitlist = await prisma.waitlist.findUnique({
       where: {
         id: params.id
       }
@@ -55,14 +54,15 @@ export const DELETE = async (
     if (!params.id) {
       return NextResponse.json({ error: "Waitlist id required" }, {status: 400});
     }
-    const waitlist = prisma.waitlist.findUnique({
+    
+    const waitlist = await prisma.waitlist.findUnique({
       where: {
         id: params.id
       }
     });
 
     if (!waitlist) {
-      return NextResponse.json({ error: "Waitlist id not found"}, {status:400});
+      return NextResponse.json({ error: "Waitlist id not found"}, { status: 400 });
     }
 
     await prisma.waitlist.delete({

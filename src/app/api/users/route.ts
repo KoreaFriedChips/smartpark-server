@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client/edge.js";
 import { searchParamsToJSON } from "@/app/utils";
+import { string, z } from "zod";
+import { UserModel } from "@zod-prisma";
 
 const prisma = new PrismaClient();
 
@@ -12,7 +14,7 @@ export const POST = async (
       // const payload = await getUser(data);
       // if (!payload) return NextResponse.json({ error: "Bad JWT" }, { status: 403 })
 
-      const user = await prisma.user.create({
+      const user: User = await prisma.user.create({
         data: data
       });
 
@@ -28,14 +30,8 @@ export const GET = async (
     req: NextRequest
 ) => {
   try {
-    const whereClause = searchParamsToJSON(req.nextUrl.searchParams);
-    const numberProperties = [ "rating", "reviews" ];
-    numberProperties.forEach((property) => {
-      if (property in whereClause) {
-        whereClause[property] = Number(whereClause[property]);
-      }
-    });
-    const users = await prisma.user.findMany({ where: whereClause });
+    const whereParams = UserModel.partial().parse(searchParamsToJSON(req.nextUrl.searchParams));
+    const users = await prisma.user.findMany({ where: whereParams });
     return NextResponse.json({ data: users });
   } 
   catch (error) {

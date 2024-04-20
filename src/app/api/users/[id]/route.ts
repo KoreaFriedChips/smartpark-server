@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client/edge.js";
-
 const prisma = new PrismaClient();
 
 export const PUT = async (
@@ -17,7 +16,7 @@ export const PUT = async (
       return NextResponse.json({ error: "User id required" }, {status:400});
     }
 
-    const user = prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: {
         id: params.id,
       }
@@ -53,7 +52,7 @@ export const DELETE = async (
       return NextResponse.json({ error: "User id required"}, {status:400});
     }
 
-    const user = prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: {
         id: params.id
       }
