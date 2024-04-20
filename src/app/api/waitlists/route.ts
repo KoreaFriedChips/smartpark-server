@@ -53,6 +53,12 @@ export const GET = async (
     
   try {
     const whereClause = searchParamsToJSON(req.nextUrl.searchParams);
+    const numberProperties = ["place"];
+    numberProperties.forEach((property) => {
+      if (property in whereClause) {
+        whereClause[property] = Number(whereClause[property]);
+      }
+    });
     const waitlists = await prisma.waitlist.findMany({ where: whereClause });
     return NextResponse.json({ data: waitlists });
   } 

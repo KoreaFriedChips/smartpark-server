@@ -29,6 +29,12 @@ export const GET = async (
 ) => {
   try {
     const whereClause = searchParamsToJSON(req.nextUrl.searchParams);
+    const numberProperties = [ "rating", "reviews" ];
+    numberProperties.forEach((property) => {
+      if (property in whereClause) {
+        whereClause[property] = Number(whereClause[property]);
+      }
+    });
     const users = await prisma.user.findMany({ where: whereClause });
     return NextResponse.json({ data: users });
   } 
