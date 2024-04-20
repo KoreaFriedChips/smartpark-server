@@ -1,4 +1,5 @@
 import { verifyToken } from '@clerk/backend';
+import { NextRequest } from 'next/server';
 
 export const getUser = async (request: any) => {
     try {
@@ -6,4 +7,12 @@ export const getUser = async (request: any) => {
     } catch {
         return null;
     }
+}
+
+export const searchParamsToJSON = (searchParams: URLSearchParams) => {
+    let searchParamsJSON: any = {};
+    searchParams.forEach((val, key) => {
+        searchParamsJSON[key] = val;
+    });
+    return searchParamsJSON;
 }

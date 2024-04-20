@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client/edge.js";
+import { searchParamsToJSON } from "@/app/utils";
 
 const prisma = new PrismaClient();
 
@@ -27,17 +28,11 @@ export const GET = async (
     req: NextRequest
 ) => {
   try {
-    let whereClause: any = {};
-    req.nextUrl.searchParams.forEach((val, key) => {
-      whereClause[key] = val;
-    });
-  
-    const users = await prisma.user.findMany({
-      where: whereClause,
-    });
-  
+    const whereClause = searchParamsToJSON(req.nextUrl.searchParams);
+    const users = await prisma.user.findMany({ where: whereClause });
     return NextResponse.json({ data: users });
-  } catch (error) {
+  } 
+  catch (error) {
     console.log(error);
     return NextResponse.json({error: "Internal server error"}, {status:500});
   }

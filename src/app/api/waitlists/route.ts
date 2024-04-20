@@ -1,4 +1,4 @@
-import { getUser } from "@/app/utils";
+import { getUser, searchParamsToJSON } from "@/app/utils";
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client/edge.js";
 
@@ -52,17 +52,11 @@ export const GET = async (
   // if (!payload) return NextResponse.json({ error: "Bad JWT" }, { status: 403 })
     
   try {
-    let whereClause: any = {};
-    req.nextUrl.searchParams.forEach((val, key) => {
-      whereClause[key] = val;
-    });
-  
-    const waitlist: Waitlist[] = await prisma.waitlist.findMany({
-      where: whereClause,
-    });
-    
-    return NextResponse.json({ data: waitlist });
-  } catch (error) {
+    const whereClause = searchParamsToJSON(req.nextUrl.searchParams);
+    const waitlists = await prisma.waitlist.findMany({ where: whereClause });
+    return NextResponse.json({ data: waitlists });
+  } 
+  catch (error) {
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
