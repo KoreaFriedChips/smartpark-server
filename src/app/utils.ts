@@ -2,9 +2,9 @@ import { verifyToken } from '@clerk/backend';
 import { NextRequest, NextResponse } from 'next/server';
 import { ZodObject, ZodSchema } from 'zod';
 
-export const getUser = async (request: any) => {
+export const getUser = async (token: string) => {
     try {
-        return await verifyToken(request.token, { jwtKey: process.env.CLERK_PUBLIC ?? "", issuer: null });
+        return await verifyToken(token, { jwtKey: process.env.CLERK_PUBLIC ?? "", issuer: null });
     } catch {
         return null;
     }
@@ -23,10 +23,11 @@ export const PrismaPOST = async (
     prismaModel: any
 ) => {
   try {
-    const data = await req.json();
-    // const payload = await getUser(data);
-    // if (!payload) return NextResponse.json({ error: "Bad JWT" }, { status: 403 })
+    const token = req.headers.get("token") ?? "";
+    const payload = await getUser(token);
+    if (!payload) return NextResponse.json({ error: "Bad JWT" }, { status: 403 })
 
+    let data = await req.json();
     const createdObject = await prismaModel.create({
       data: data
     });
@@ -35,6 +36,7 @@ export const PrismaPOST = async (
 
   } catch (error) {
     console.log("POST failed");
+    console.log(error);
     return NextResponse.json({error: "Internal server error"}, {status:500});
   }
 }
@@ -45,6 +47,10 @@ export const PrismaGET = async (
     prismaModel: any
 ) => {
   try {
+    const token = req.headers.get("token") ?? "";
+    const payload = await getUser(token);
+    if (!payload) return NextResponse.json({ error: "Bad JWT" }, { status: 403 })
+
     const whereParams = partialSchema.safeParse(searchParamsToJSON(req.nextUrl.searchParams));
     if (!whereParams.success) {
       return NextResponse.json({ error: "Invalid search params"}, {status:400});
@@ -65,6 +71,10 @@ export const PrismaPUT = async (
   prismaModel: any
 ) => {
   try {
+    const token = req.headers.get("token") ?? "";
+    const payload = await getUser(token);
+    if (!payload) return NextResponse.json({ error: "Bad JWT" }, { status: 403 })
+
     const updateParse = await partialSchema.safeParseAsync(await req.json());
     if (!updateParse.success) {
       return NextResponse.json({ error: "Invalid update data"}, {status:400});
@@ -106,9 +116,9 @@ export const PrismaDELETE = async (
   prismaModel: any
 ) => {
   try {
-    // const data = await req.json();
-    // const payload = await getUser(data);
-    // if (!payload) return NextResponse.json({ error: "Bad JWT" }, { status: 403 });
+    const token = req.headers.get("token") ?? "";
+    const payload = await getUser(token);
+    if (!payload) return NextResponse.json({ error: "Bad JWT" }, { status: 403 })
 
     if (!params.id) {
       return NextResponse.json({ error: "id required"}, {status:400});
