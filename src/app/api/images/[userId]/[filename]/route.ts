@@ -3,21 +3,6 @@ import { PrismaClient } from "@prisma/client/edge.js";
 import { PrismaGET, PrismaPOST, getUser, tryOrReturnError } from "@/app/utils";
 import { getRequestContext } from "@cloudflare/next-on-pages";
 
-
-export const PUT = async (
-    req: NextRequest,
-    { params }: { params: { userId: string, filename: string }}
-) => {
-  return tryOrReturnError(async () => {
-    const imgBucket: R2Bucket = getRequestContext().env.IMG_BUCKET;
-    const key = `${params.userId}/${params.filename}`
-    const obj = await imgBucket.put(key, req.body, {
-      httpMetadata: req.headers
-    });
-    return NextResponse.json({data: obj});
-  });
-}
-
 export const GET = async (
   req: NextRequest,
   { params }: { params: { userId: string, filename: string }}
