@@ -33,8 +33,7 @@ const schema = z.object({
 export const POST = async (
     req: NextRequest
 ) => {
-    const token = req.headers.get("token") ?? "";
-    const payload = await getUser(token);
+    const {payload} = await getUser(req);
     if (!payload) return NextResponse.json({ error: "Bad JWT" }, { status: 403 });
 
     // const parse = await schema.safeParseAsync(await req.json());
