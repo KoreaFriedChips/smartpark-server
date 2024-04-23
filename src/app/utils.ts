@@ -24,6 +24,15 @@ const getUserId = async (payload: JwtPayload): Promise<string | null> => {
   return user.id;
 }
 
+export const tryOrReturnError = async (fn: () => Promise<NextResponse>) => {
+  try {
+    return await fn();
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({error: "Internal Server Error"}, {status:500});
+  }
+}
+
 export const searchParamsToJSON = (searchParams: URLSearchParams) => {
     let searchParamsJSON: any = {};
     searchParams.forEach((val, key) => {
