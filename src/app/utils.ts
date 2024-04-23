@@ -51,15 +51,12 @@ export const PrismaPOST = async (
 }
 
 export const PrismaGET = async (
-    req: NextRequest,
+    searchParams: URLSearchParams,
     partialSchema: ZodSchema,
     prismaModel: any
 ) => {
   try {
-    const payload = await getUser(req);
-    if (!payload) return NextResponse.json({ error: "Bad JWT" }, { status: 403 })
-
-    const whereParams = partialSchema.safeParse(searchParamsToJSON(req.nextUrl.searchParams));
+    const whereParams = partialSchema.safeParse(searchParamsToJSON(searchParams));
     if (!whereParams.success) {
       return NextResponse.json({ error: "Invalid search params"}, {status:400});
     }
@@ -79,7 +76,7 @@ export const PrismaPUT = async (
   prismaModel: any
 ) => {
   try {
-    const payload = await getUser(req);
+    const {payload} = await getUser(req);
     if (!payload) return NextResponse.json({ error: "Bad JWT" }, { status: 403 })
 
     const updateParse = await partialSchema.safeParseAsync(await req.json());
@@ -123,7 +120,7 @@ export const PrismaDELETE = async (
   prismaModel: any
 ) => {
   try {
-    const payload = await getUser(req);
+    const {payload} = await getUser(req);
     if (!payload) return NextResponse.json({ error: "Bad JWT" }, { status: 403 })
 
     if (!params.id) {

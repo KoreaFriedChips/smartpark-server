@@ -18,6 +18,9 @@ export const POST = async (
 export const GET = async (
     req: NextRequest
 ) => {
-  return PrismaGET(req, UserModel.partial(), prisma.user);
+  const { userId, payload } = await getUser(req);
+  if (!payload) return NextResponse.json({ error: "Bad JWT" }, { status: 403 });
+  if (!userId) return NextResponse.json({error: "clerkId not found"}, {status: 400});
+  return PrismaGET(req.nextUrl.searchParams, UserModel.partial(), prisma.user);
 }
 

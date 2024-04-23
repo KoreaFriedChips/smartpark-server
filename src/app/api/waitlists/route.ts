@@ -50,8 +50,8 @@ export const POST = async (
 export const GET = async (
   req: NextRequest
 ) => {
-  // const data = await req.json();
-  // const payload = await getUser(data);
-  // if (!payload) return NextResponse.json({ error: "Bad JWT" }, { status: 403 })
-  return PrismaGET(req, WaitlistModel.partial(), prisma.waitlist);
+  const { userId, payload } = await getUser(req);
+  if (!payload) return NextResponse.json({ error: "Bad JWT" }, { status: 403 });
+  if (!userId) return NextResponse.json({error: "clerkId not found"}, {status: 400});
+  return PrismaGET(req.nextUrl.searchParams, WaitlistModel.partial(), prisma.waitlist);
 }
