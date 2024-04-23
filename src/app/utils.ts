@@ -73,10 +73,11 @@ export const PrismaPUT = async (
   req: NextRequest,
   { params }: { params: { id: string }},
   partialSchema: ZodSchema,
-  prismaModel: any
+  prismaModel: any,
+  userIdPropName: string | null | undefined = undefined
 ) => {
   try {
-    const {payload} = await getUser(req);
+    const {userId, payload} = await getUser(req);
     if (!payload) return NextResponse.json({ error: "Bad JWT" }, { status: 403 })
 
     const updateParse = await partialSchema.safeParseAsync(await req.json());
@@ -91,7 +92,7 @@ export const PrismaPUT = async (
       return NextResponse.json({ error: "id required" }, {status:400});
     }
 
-    const object = await prismaModel.findUnique({
+    let object = await prismaModel.findUnique({
       where: {
         id: params.id,
       }
@@ -99,6 +100,11 @@ export const PrismaPUT = async (
 
     if (!object) {
       return NextResponse.json({ error: "id not found"}, {status:400});
+    }
+
+    if ((userIdPropName === undefined && object['userId'] !== userId) ||
+        (userIdPropName && object[userIdPropName] !== userId)) {
+      return NextResponse.json({ error: "object does not belong to userId"}, {status:403});
     }
 
     await prismaModel.update({
@@ -117,10 +123,11 @@ export const PrismaPUT = async (
 export const PrismaDELETE = async (
   req: NextRequest,
   { params }: {params: { id: string}},
-  prismaModel: any
+  prismaModel: any,
+  userIdPropName: string | null | undefined = undefined
 ) => {
   try {
-    const {payload} = await getUser(req);
+    const {userId, payload} = await getUser(req);
     if (!payload) return NextResponse.json({ error: "Bad JWT" }, { status: 403 })
 
     if (!params.id) {
@@ -135,6 +142,11 @@ export const PrismaDELETE = async (
 
     if (!object) {
       return NextResponse.json({error: "id not found"}, {status:400});
+    }
+
+    if ((userIdPropName === undefined && object['userId'] !== userId) ||
+        (userIdPropName && object[userIdPropName] !== userId)) {
+      return NextResponse.json({ error: "object does not belong to userId"}, {status:403});
     }
 
     await prismaModel.delete({

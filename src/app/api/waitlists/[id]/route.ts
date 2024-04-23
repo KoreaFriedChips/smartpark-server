@@ -9,7 +9,7 @@ export const PUT = async (
   { params }: { params: { id: string }}
 ) => {
 
-  return PrismaPUT(req, { params }, WaitlistModel.partial(), prisma.waitlist);
+  return PrismaPUT(req, { params }, WaitlistModel.partial(), prisma.waitlist, null);
 }
 
 
@@ -17,5 +17,5 @@ export const DELETE = async (
   req: NextRequest,
   { params }: { params : { id: string } }
 ) => {
-  return PrismaDELETE(req, { params }, prisma.waitlist);
+  return PrismaDELETE(req, { params }, prisma.waitlist, null);
 }

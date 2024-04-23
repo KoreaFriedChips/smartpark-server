@@ -9,12 +9,12 @@ export const PUT = async (
     req: NextRequest,
     { params }: { params: { id: string } }
 ) => {
-  return PrismaPUT(req, { params }, ListingModel.partial(), prisma.listing);
+  return PrismaPUT(req, { params }, ListingModel.partial(), prisma.listing, "sellerId");
 }
 
 export const DELETE = async (
     req: NextRequest,
     {params}: {params: { id: string } }
 ) => {
-  return PrismaDELETE(req, { params }, prisma.listing);
+  return PrismaDELETE(req, { params }, prisma.listing, "sellerId");
 }
