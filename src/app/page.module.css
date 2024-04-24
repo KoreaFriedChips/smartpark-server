@@ -268,7 +268,8 @@
 
 .sectionAlt .bentoRow {
   flex-direction: row-reverse;
-  gap: 4rem;
+  /* gap: 4rem; */
+  gap: 2rem;
 }
 
 .bentoItem {
@@ -371,23 +372,34 @@
 }
 
 .selectBox {
-  /* background: transparent; */
+  background: transparent;
   padding: 1.25rem 1.5rem;
   gap: 1rem;
   width: 400px;
 }
 
 .selectBoxIcon {
-  color: var(--accent-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 1rem;
+  font-weight: 700;
+  box-sizing: border-box;
+  border-radius: 100%;
+  height: 1.75rem;
+  width: 1.75rem;
+  border: 1px solid var(--accent);
 }
 
 .selectBoxTitle {
   font-size: 1.25rem;
-  line-height: 1.15rem;
+  line-height: 1.5rem;
 }
 
 .selectBoxDescription {
-  margin-top: -0.25rem;
+  margin-top: -0.5rem;
+  margin-bottom: -0.25rem;
   font-size: 0.95rem;
   line-height: 1.45rem;
 }
@@ -412,8 +424,9 @@
     box-shadow: 4px 8px 5.5px var(--shadow);
   }
 
-  .bentoBox:hover .bentoIcon {
+  .bentoBox:hover .bentoIcon, .bentoSection:hover .selectBoxIcon {
     color: var(--primary);
+    border-color: var(--primary);
   }
 
   .bentoBox:hover .overlayVertical, .bentoBox:hover .overlayHorizontal {
@@ -446,6 +459,16 @@
 
   .bentoDescription {
     max-width: 350px;
+  }
+
+  /* .sectionAlt .bentoRow {
+    gap: 2rem;
+  } */
+
+  .sectionAlt img {
+    width: 100%;
+    height: 100%;
+    max-width: 450px;
   }
 }
 
@@ -560,6 +583,30 @@
   .bentoImage img, .bentoImageSide img {
     width: 100%;
     height: auto;
+  }
+  
+  .sectionAlt .bentoSection {
+    flex-direction: column;
+  }
+
+  .sectionAlt img {
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+    padding: 1rem;
+  }
+
+  .selectBoxIcon {
+    align-self: center;
+  }
+
+  .selectBoxTitle, .selectBoxDescription {
+    text-align: center;
+  }
+
+  .selectBox {
+    width: 100% !important;
+    align-items: center;
   }
 }
 

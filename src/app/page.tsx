@@ -43,7 +43,7 @@ export default function Home({ searchParams }: SearchParamProps) {
                 </Link>
                 <div className={styles.buttonDetails}>
                   <p>&lt;15 seconds</p>
-                  <p>Opt out any time</p>
+                  <p>Opt-out any time</p>
                 </div>
               </div>
               <a href="https://youtu.be/nu-ic3TmaVQ" target="_blank" className={styles.button} role="button">
@@ -146,25 +146,26 @@ export default function Home({ searchParams }: SearchParamProps) {
             <h1 className={styles.subtitle}>
               <i>Clicks away</i> from your next spot.
             </h1>
-            <p className={styles.subDescription}>With SmartPark's advanced features and intuitive functionality, find parking anywhere in seconds.</p>
+            <p className={styles.subDescription}>With SmartPark's advanced features and intuitive functionality, start finding your next spot now.</p>
           </div>
         </div>
         <div className={styles.bentoContainer}>
           <div className={styles.bentoRow}>
             <div className={styles.bentoSection}>
               <div className={styles.selectBox}>
-                <HandHeart size={24} className={styles.selectBoxIcon} />
+                <p className={styles.selectBoxIcon}>
+                  <i>1</i>
+                </p>
                 <div className={styles.bentoText}>
                   <h2 className={styles.selectBoxTitle}>Community-driven platform.</h2>
                   <p className={styles.selectBoxDescription}>
-                    Join a growing community of users who are revolutionizing the way we think about parking. Help shape the future of parking by providing feedback and suggestions to the SmartPark
-                    team. We'll listen!
+                    Join a growing community of users.
                   </p>
                 </div>
               </div>
             </div>
             <div className={styles.bentoSection}>
-              <Image src={"/SMARTPARK-DEMO-SMALL-ALT.png"} alt="SmartPark demo" width={500} height={293} priority />
+              <Image src={"/SMARTPARK-DEMO-SMALL.png"} alt="SmartPark demo" width={400} height={556} priority />
             </div>
           </div>
         </div>
