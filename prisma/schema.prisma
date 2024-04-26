@@ -12,7 +12,6 @@ model Waitlist {
   name      String
   email     String   @unique
   use       String?
-  place     Int?     @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -22,8 +21,6 @@ model User {
   name           String
   clerkId        String
   description    String?
-  rating         Float          @default(0)
-  reviews        Int            @default(0)
   city           String?
   state          String?
   profilePicture String?
@@ -35,6 +32,7 @@ model User {
   Transaction    Transaction[]
   Favorite       Favorite[]
   Confirmation   Confirmation[]
+  Reservation    Reservation[]
 }
 
 model Listing {
@@ -44,18 +42,18 @@ model Listing {
   latitude       Float
   longitude      Float
   distance       Float         @default(0)
+  address        String
   city           String
   state          String
   listingType    String
-  price          Float
+  startingPrice  Float
+  buyPrice       Float
   duration       String
   relist         Boolean       @default(false)
   relistDuration String?
   description    String?
   availability   Json
   active         Boolean       @default(true)
-  rating         Float         @default(0)
-  reviews        Int           @default(0)
   date           DateTime
   ends           DateTime?
   bids           Int           @default(0)
@@ -63,12 +61,13 @@ model Listing {
   spotsLeft      Int           @default(1)
   tags           String[]
   amenities      String[]
-  seller         User          @relation(fields: [sellerId], references: [id])
-  sellerId       String        @db.ObjectId
+  seller         User          @relation(fields: [userId], references: [id])
+  userId         String        @db.ObjectId
   spotReviews    Review[]
   Bid            Bid[]
   Transaction    Transaction[]
   Favorite       Favorite[]
+  Reservation    Reservation[]
 }
 
 model Review {
@@ -102,7 +101,8 @@ model Transaction {
   listing         Listing        @relation(fields: [listingId], references: [id])
   userId          String         @db.ObjectId
   listingId       String         @db.ObjectId
-  confirmations   Confirmation[]
+  confirmation    Confirmation?
+  confirmationId  String?        @unique@db.ObjectId
 }
 
 model Favorite {
@@ -118,6 +118,16 @@ model Confirmation {
   confirmed     DateTime    @default(now())
   transaction   Transaction @relation(fields: [transactionId], references: [id])
   user          User        @relation(fields: [userId], references: [id])
-  transactionId String      @db.ObjectId
+  transactionId String      @unique@db.ObjectId
   userId        String      @db.ObjectId
+}
+
+model Reservation {
+  id          String      @id @default(auto()) @map("_id") @db.ObjectId
+  starts      DateTime
+  ends        DateTime
+  user        User        @relation(fields: [userId], references: [id])
+  userId      String      @db.ObjectId
+  listing     Listing     @relation(fields: [listingId], references: [id])
+  listingId   String      @db.ObjectId
 }
