@@ -21,18 +21,11 @@ export const POST = async (
       }
 
       const waitlist: z.infer<typeof WaitlistModel> = await prisma.$transaction(async (prisma) => {
-        const highestEntry = await prisma.waitlist.findFirst({
-          orderBy: { place: "desc" },
-        });
-    
-        let highestPlace = highestEntry && highestEntry.place != null ? highestEntry.place : 0;
-        highestPlace += 1;
     
         const waitlistEntry: Waitlist = await prisma.waitlist.create({
           data: {
             name: data.name,
             email: data.email,
-            place: highestPlace,
           },
         });
 

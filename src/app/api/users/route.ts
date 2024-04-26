@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client/edge.js";
 import { PrismaGET, PrismaPOST, getUser } from "@/app/utils";
 import { string, z } from "zod";
-import { CompleteUser, UserModel, RelatedUserModel } from "@zod-prisma";
+import { UserModel } from "@zod-prisma";
 
 const prisma = new PrismaClient();
 

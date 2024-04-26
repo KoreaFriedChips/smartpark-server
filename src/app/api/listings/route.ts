@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client/edge.js";
 import { PrismaGET, PrismaPOST, getUser } from "@/app/utils";
 import { now } from "mongoose";
 import { z } from "zod";
-import { CompleteListing, ListingModel } from "@zod-prisma";
+import { ListingModel } from "@zod-prisma";
 
 
 const prisma = new PrismaClient();
