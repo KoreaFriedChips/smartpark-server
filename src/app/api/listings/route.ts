@@ -34,27 +34,27 @@ return tryOrReturnError(async () => {
   }
 
 
-  const listings = await Promise.all(await prisma.$transaction(async (prisma) => {
-    const listings = await prisma.listing.findMany({ where: whereParams.data });
-    return await listings.map(async (listing) => {
-      const reviews = await prisma.review.aggregate({
-        _count: {
-          id: true
-        },
-        _avg: {
-          rating: true
-        },
-        where: {
-          listingId: listing.id
-        }
-      });
-      return {
-        ...listing,
-        rating: reviews._avg.rating,
-        reviews: reviews._count.id
+
+  const objects = await prisma.listing.findMany({ where: whereParams.data });
+  const listings = await Promise.all(await objects.map(async (listing) => {
+    const reviews = await prisma.review.aggregate({
+      _count: {
+        id: true
+      },
+      _avg: {
+        rating: true
+      },
+      where: {
+        listingId: listing.id
       }
     });
-  }))
+    return {
+      ...listing,
+      rating: reviews._avg.rating,
+      reviews: reviews._count.id
+    }
+  }));
+
   
 
   return NextResponse.json({ data: listings });
