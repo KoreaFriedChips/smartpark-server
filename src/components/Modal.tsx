@@ -16,7 +16,7 @@ const initialState = {
   place: "",
 };
 
-export default function Modal(props: {ref: string | undefined}) {
+export default function Modal(props: {referral: string | undefined}) {
   const [state, formAction] = useFormState(formSubmit, initialState);
   const name = useCookies()?.get("name");
   const email = useCookies()?.get("email");
@@ -27,11 +27,11 @@ export default function Modal(props: {ref: string | undefined}) {
     <div className={styles.background} id="modal">
       <dialog className={styles.modal}>
         <form className={styles.form} action={formAction} onSubmit={() => {}}>
-          <input hidden value={props.ref} name="ref"></input>
-          <Link href={props.ref ? `/?ref=${props.ref}` : "/"} className={styles.buttonClose} role="button">
+          <input style={{display: "none"}} hidden={true} value={props.referral} name="ref"></input>
+          <Link href={props.referral ? `/?ref=${props.referral}` : "/"} className={styles.buttonClose} role="button">
             <X size={16} strokeWidth={3} className={styles.close} />
           </Link>
-          <Link href={props.ref ? `/?ref=${props.ref}` : "/"} className={styles.logo}>
+          <Link href={props.referral ? `/?ref=${props.referral}` : "/"} className={styles.logo}>
             <Image src={"/SMARTPARK-WAITLIST-ICON.png"} alt="SmartPark Logo" width={100} height={100} priority />
           </Link>
           <h2 className={styles.title}>{title}</h2>
