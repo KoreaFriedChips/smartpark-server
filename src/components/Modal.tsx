@@ -16,7 +16,7 @@ const initialState = {
   place: "",
 };
 
-export default function Modal(props: {ref: string | null}) {
+export default function Modal(props: {ref: string | undefined}) {
   const [state, formAction] = useFormState(formSubmit, initialState);
   const name = useCookies()?.get("name");
   const email = useCookies()?.get("email");
