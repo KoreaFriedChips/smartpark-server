@@ -86,6 +86,8 @@ model Bid {
   amount    Float
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  starts    DateTime 
+  ends      DateTime
   user      User     @relation(fields: [userId], references: [id])
   listing   Listing  @relation(fields: [listingId], references: [id])
   userId    String   @db.ObjectId
