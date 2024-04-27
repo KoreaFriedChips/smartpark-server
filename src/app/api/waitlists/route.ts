@@ -10,7 +10,7 @@ const prisma = new PrismaClient();
 export const POST = async (
     req: NextRequest
 ) => {
-    const data = await req.json();
+    const data: any = await req.json();
     try {
       const entry = await prisma.waitlist.findUnique({
         where: { email: data.email },

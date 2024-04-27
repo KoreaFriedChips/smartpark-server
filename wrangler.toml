@@ -1,1 +1,5 @@
 compatibility_flags = [ "nodejs_compat" ]
+
+[[r2_buckets]]
+binding = 'IMG_BUCKET'
+bucket_name = 'smartpark'
