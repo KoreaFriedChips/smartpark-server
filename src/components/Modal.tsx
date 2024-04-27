@@ -28,10 +28,10 @@ export default function Modal(props: {ref: string}) {
       <dialog className={styles.modal}>
         <form className={styles.form} action={formAction} onSubmit={() => {}}>
           <input hidden value={props.ref} name="ref"></input>
-          <Link href="/" className={styles.buttonClose} role="button">
+          <Link href={props.ref ? `/?ref=${props.ref}` : "/"} className={styles.buttonClose} role="button">
             <X size={16} strokeWidth={3} className={styles.close} />
           </Link>
-          <Link href="/" className={styles.logo}>
+          <Link href={props.ref ? `/?ref=${props.ref}` : "/"} className={styles.logo}>
             <Image src={"/SMARTPARK-WAITLIST-ICON.png"} alt="SmartPark Logo" width={100} height={100} priority />
           </Link>
           <h2 className={styles.title}>{title}</h2>
