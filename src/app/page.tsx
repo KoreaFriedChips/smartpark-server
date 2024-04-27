@@ -25,7 +25,7 @@ export default function Home({ searchParams }: SearchParamProps) {
   return (
     <>
       <main className={styles.main}>
-        {show ? <Modal ref={searchParams.ref} /> : <Header />}
+        {show ? <Modal ref={ref} /> : <Header />}
         <div className={styles.heroSection}>
           <div className={styles.hero}>
             <p className={styles.shadowText}>SMARTPARK WAITLIST</p>
