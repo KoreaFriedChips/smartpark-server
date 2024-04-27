@@ -20,11 +20,12 @@ export default function Home({ searchParams }: SearchParamProps) {
   //   }
   // }, []);
   const show = searchParams?.show;
+  const ref = searchParams?.ref;
 
   return (
     <>
       <main className={styles.main}>
-        {show ? <Modal /> : <Header />}
+        {show ? <Modal referral={ref} /> : <Header />}
         <div className={styles.heroSection}>
           <div className={styles.hero}>
             <p className={styles.shadowText}>SMARTPARK WAITLIST</p>
@@ -37,7 +38,7 @@ export default function Home({ searchParams }: SearchParamProps) {
               <div className={styles.buttonBox}>
                 {/* change "a" to "Link" for no refresh */}
                 {/* <a href={"/?show=true"} className={styles.buttonMain} role="button"> */}
-                <Link href={"?show=true"} className={styles.buttonMain} role="button">
+                <Link href={ref ? `?show=true&ref=${ref}` : "?show=true"} className={styles.buttonMain} role="button">
                   <Sparkles size={18} />
                   <p>Join the waitlist</p>
                 </Link>

@@ -9,7 +9,7 @@
     "lint": "next lint",
     "deploy": "npx prisma generate --no-engine && npx @cloudflare/next-on-pages@1",
     "test": "npx @cloudflare/next-on-pages@1 && wrangler pages dev .vercel/output/static/ --live-reload",
-    "pushschema": "dotenv -f .env.local run -- npx prisma db push"
+    "pushschema": "dotenv -e .env.local run npx prisma db push"
   },
   "dependencies": {
     "@clerk/backend": "^0.38.6",
