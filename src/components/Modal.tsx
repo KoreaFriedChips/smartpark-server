@@ -16,7 +16,7 @@ const initialState = {
   place: "",
 };
 
-export default function Modal() {
+export default function Modal(props: {ref: string}) {
   const [state, formAction] = useFormState(formSubmit, initialState);
   const name = useCookies()?.get("name");
   const email = useCookies()?.get("email");
@@ -27,6 +27,7 @@ export default function Modal() {
     <div className={styles.background} id="modal">
       <dialog className={styles.modal}>
         <form className={styles.form} action={formAction} onSubmit={() => {}}>
+          <input hidden value={props.ref} name="ref"></input>
           <Link href="/" className={styles.buttonClose} role="button">
             <X size={16} strokeWidth={3} className={styles.close} />
           </Link>

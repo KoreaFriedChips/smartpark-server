@@ -2,7 +2,7 @@
 
 import { z } from "zod";
 import { PrismaClient } from "@prisma/client/edge.js";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 const prisma = new PrismaClient();
 const schema = z.object({
   name: z.string().min(1, "Name is required").max(50, "Name must be 50 characters or fewer"),
@@ -25,6 +25,8 @@ export async function formSubmit(prevState: any, formData: FormData) {
     name: String(formData.get("name")),
     email: String(formData.get("email")).toLowerCase(),
     hidden: formData.get("catch"),
+    refIp: headers().get("CF-Connecting-IP"),
+    refLoc: String(formData.get("ref"))
   };
 
   const validatedFields = schema.safeParse({
@@ -68,6 +70,8 @@ export async function formSubmit(prevState: any, formData: FormData) {
         data: {
           name: data.name,
           email: data.email,
+          refLoc: data.refLoc,
+          refIp: data.refIp
         },
       });
     });

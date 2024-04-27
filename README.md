@@ -36,7 +36,7 @@ DATABASE_URL="mongodb+srv://XXXXX"
 Run `npx prisma generate` to generate the Prisma client. 
 
 There are two ways to run the server locally. The first way is the simplest—run
-`npm run start`. However, there are caveats. If we want to test out how
+`npm run dev`. However, there are caveats. If we want to test out how
 Cloudflare specific runtime environments work (such as connecting to an R2
 bucket), using this command won't work. If you're not testing anything with
 Cloudflare, don't worry about this.
