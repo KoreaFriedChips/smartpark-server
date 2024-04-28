@@ -13,7 +13,7 @@ export const GET = async (
     }
     
     const imgBucket: R2Bucket = getRequestContext().env.IMG_BUCKET;
-    const obj = await imgBucket.get(`${params.slug}/${params.filename}`);
+    const obj = await imgBucket.get(`${params.filename}`);
     if (!obj) {
       return NextResponse.json({error: "image not found"}, {status:404})
     }
