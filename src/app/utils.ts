@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 export const getUser = async (req: Request) => {
     try {
-
+        console.log("test")
         const payload = await verifyToken(req.headers.get("token") ?? "", { jwtKey: process.env.CLERK_PUBLIC ?? "", issuer: null });
         console.log(payload);
         const userId = await getUserId(payload);
