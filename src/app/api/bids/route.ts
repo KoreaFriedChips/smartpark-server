@@ -18,7 +18,7 @@ return tryOrReturnError(async () => {
   
   let data: any = await req.json();
 
-  const highestBid = await getHighestBid(data.listingId, interval(data.starts, data.ends));
+  const highestBid = await getHighestBid(prisma, data.listingId, interval(data.starts, data.ends));
   if (highestBid && Number(data.amount) <= highestBid.amount) return NextResponse.json({error: "bid amount must be higher than current max"}, {status: 400})
 
   data.userId = userId;

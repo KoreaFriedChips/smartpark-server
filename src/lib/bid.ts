@@ -1,7 +1,8 @@
 
-import { prisma } from "@/lib/prisma";
-export const getHighestBid = async (listingId: string, interval: Interval ): Promise<Bid | null> => {
-  return await prisma.bid.findFirst({
+import { Prisma } from "@prisma/client/edge";
+
+export const getHighestBid = async (tx: Prisma.TransactionClient, listingId: string, interval: Interval ): Promise<Bid | null> => {
+  return await tx.bid.findFirst({
     where: {
       listingId: listingId,
       starts: interval.start,
