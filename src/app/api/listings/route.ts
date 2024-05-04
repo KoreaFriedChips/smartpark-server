@@ -21,7 +21,7 @@ return tryOrReturnError(async () => {
     data: data
   });
 
-  return NextResponse.json({ data: listing });
+  return NextResponse.json({ data: {...listing, rating: 0, reviews: 0 } });
 
 })}
 
