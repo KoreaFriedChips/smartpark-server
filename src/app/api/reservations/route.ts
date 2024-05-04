@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getUser } from "@/app/utils";
 import { isEqual, interval } from "date-fns";
+import { createReservation } from "@/lib/reservation";
 
 export const POST = async (
   req: NextRequest,
@@ -17,29 +18,6 @@ return tryOrReturnError(async () => {
   if (!data.starts || !data.ends) throw new Error("interval needed for reservation");
 
 
-  const reservation = await prisma.$transaction(async (tx) => {
-    const listing = await tx.listing.findUnique({
-      where: { id: data.listingId },
-      select: { availability: true }
-    });
-    if (!listing) throw new Error("listing not found");
-    
-    const reserved: Interval = interval(data.starts, data.ends)
-    const newAvailability = listing.availability.filter(({start, end}) => !isEqual(reserved.start, start) && !isEqual(reserved.end, end));
-    await tx.listing.update({ 
-      where: { 
-        id: data.listingId 
-      }, 
-      data: {
-        availability: newAvailability
-      },
-    })
-  
-    const createdObject = await tx.reservation.create({
-      data: data
-    });
-
-    return createdObject;
-  })
+  const reservation = await createReservation(data);
   return NextResponse.json({data: reservation});
 })}
