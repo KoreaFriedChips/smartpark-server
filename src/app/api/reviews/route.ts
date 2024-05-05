@@ -14,7 +14,7 @@ export const POST = async (
   if (!userId) return NextResponse.json({error: "clerkId not found"}, {status: 400});
   let data: any = await req.json();
   data.userId = userId;
-  return PrismaPOST(req, prisma.review);
+  return PrismaPOST(data, prisma.review);
 }
 
 export const GET = async (
