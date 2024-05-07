@@ -2,7 +2,8 @@ import { verifyToken } from '@clerk/backend';
 import { JwtPayload } from 'jsonwebtoken';
 import { NextRequest, NextResponse } from 'next/server';
 import { ZodObject, ZodSchema } from 'zod';
-import { PrismaClient } from '@prisma/client/edge.js';
+import { Prisma, PrismaClient } from '@prisma/client/edge.js';
+import { ListingModel } from '@zod-prisma';
 const prisma = new PrismaClient();
 
 export const getUser = async (req: Request) => {
@@ -170,4 +171,20 @@ export const PrismaDELETE = async (
     console.log(error);
     return NextResponse.json({ error: "Internal Server error"}, {status:500});
   }
+}
+
+export const ParseRawListings = (rawListings: Prisma.JsonObject): Listing[] => {
+  if (!(rawListings instanceof Array)) throw new Error ("rawListings should be an array");
+  
+  const listings = rawListings.map((val) => ({
+    ...val,
+    id: val._id.$oid,
+    date: new Date(val.date.$date),
+    ends: val.ends ? new Date(val.ends.$date) : undefined,
+    userId: val.userId.$oid,
+    tags: val.tags ?? [],
+    availability: val.availability.map((ival: any) => ({ start: new Date(ival.start.$date), end: new Date(ival.end.$date) }))
+  }));
+
+  return ListingModel.array().parse(listings)
 }

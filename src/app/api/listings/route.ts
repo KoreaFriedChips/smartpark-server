@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client/edge.js";
-import { PrismaGET, PrismaPOST, getUser } from "@/app/utils";
+import { Prisma, PrismaClient } from "@prisma/client/edge.js";
+import { ParseRawListings, PrismaGET, PrismaPOST, getUser } from "@/app/utils";
 import { now } from "mongoose";
 import { z } from "zod";
 import { ListingModel } from "@zod-prisma";
 import { searchParamsToJSON, tryOrReturnError } from "@/app/utils";
-
 
 const prisma = new PrismaClient();
 
@@ -34,14 +33,52 @@ return tryOrReturnError(async () => {
   if (!payload) return NextResponse.json({ error: "Bad JWT" }, { status: 403 });
   if (!userId) return NextResponse.json({error: "clerkId not found"}, {status: 400});
   
+  let otherParams: any = {};
+  const tags = req.nextUrl.searchParams.getAll('tags');
+  if (tags.length > 0) {
+    otherParams['tags'] = { $all: tags};
+    req.nextUrl.searchParams.delete('amenities');
+  }
+  const amenities = req.nextUrl.searchParams.getAll('amenities');
+  if (amenities.length > 0) {
+    otherParams['amenities'] = { $all: amenities };
+    req.nextUrl.searchParams.delete('amenities');
+  }
+
   const whereParams: any = ListingModel.partial().safeParse(searchParamsToJSON(req.nextUrl.searchParams));
   if (!whereParams.success) {
     return NextResponse.json({ error: "Invalid search params"}, {status:400});
   }
 
+  let pipeline: any[] = [];
 
+  const search = req.nextUrl.searchParams.get('search');
+  if (search) {
+    pipeline.push({ 
+      $search: {
+      "index": "listingTextSearch",
+      text: {
+        query: search,
+        path: { wildcard: "*" }
+      }
+      } 
+    } );
+  }
 
-  const objects = await prisma.listing.findMany({ where: whereParams.data });
+  pipeline.push({
+    $addFields: {
+      id: { $toString: { $getField: { field: "_id", input: "$$ROOT" } } }
+    }
+  },
+  {
+    $match: {
+      ...whereParams.data,
+      ...otherParams
+    }
+  });
+
+  const objects = ParseRawListings(await prisma.listing.aggregateRaw({pipeline: pipeline}));
+
   const listings = await Promise.all(await objects.map(async (listing) => {
     const reviews = await prisma.review.aggregate({
       _count: {
