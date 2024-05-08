@@ -71,35 +71,28 @@ return tryOrReturnError(async () => {
     }
   },
   {
+    $lookup: {
+      from: "Review",
+      localField: "_id",
+      foreignField: "listingId",
+      as: "reviews"
+    }
+  },
+  {
+    $addFields: {
+      rating: { $avg: "$reviews.rating" },
+      reviews: { $size: "$reviews" }
+    }
+  },
+  {
     $match: {
       ...whereParams.data,
       ...otherParams
     }
   });
-
-  const objects = ParseRawListings(await prisma.listing.aggregateRaw({pipeline: pipeline}));
-
-  const listings = await Promise.all(await objects.map(async (listing) => {
-    const reviews = await prisma.review.aggregate({
-      _count: {
-        id: true
-      },
-      _avg: {
-        rating: true
-      },
-      where: {
-        listingId: listing.id
-      }
-    });
-    return {
-      ...listing,
-      rating: reviews._avg.rating,
-      reviews: reviews._count.id
-    }
-  }));
-
+  const res = await prisma.listing.aggregateRaw({pipeline: pipeline});
+  const listings = ParseRawListings(res);
   
-
   return NextResponse.json({ data: listings });
   
 })

@@ -3,7 +3,7 @@ import { JwtPayload } from 'jsonwebtoken';
 import { NextRequest, NextResponse } from 'next/server';
 import { ZodObject, ZodSchema } from 'zod';
 import { Prisma, PrismaClient } from '@prisma/client/edge.js';
-import { ListingModel } from '@zod-prisma';
+import { ExtendedListingModel, ListingModel } from '@zod-prisma';
 const prisma = new PrismaClient();
 
 export const getUser = async (req: Request) => {
@@ -173,7 +173,7 @@ export const PrismaDELETE = async (
   }
 }
 
-export const ParseRawListings = (rawListings: Prisma.JsonObject): Listing[] => {
+export const ParseRawListings = (rawListings: Prisma.JsonObject): ExtendedListing[] => {
   if (!(rawListings instanceof Array)) throw new Error ("rawListings should be an array");
   
   const listings = rawListings.map((val) => ({
@@ -186,5 +186,5 @@ export const ParseRawListings = (rawListings: Prisma.JsonObject): Listing[] => {
     availability: val.availability.map((ival: any) => ({ start: new Date(ival.start.$date), end: new Date(ival.end.$date) }))
   }));
 
-  return ListingModel.array().parse(listings)
+  return ExtendedListingModel.array().parse(listings)
 }

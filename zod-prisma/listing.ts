@@ -33,3 +33,8 @@ export const ListingModel = z.object({
   amenities: z.string().array(),
   userId: z.string(),
 })
+
+export const ExtendedListingModel = ListingModel.extend({
+  rating: z.coerce.number(),
+  reviews: z.coerce.number().int(),
+})
