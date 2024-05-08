@@ -130,12 +130,25 @@ return tryOrReturnError(async () => {
       $sort: sortFields
     })
   }
+
+  const limit = 10;
+  let skip = 0;
+  const page = req.nextUrl.searchParams.get("page");
+  if (page) {
+    skip = (Number(page) - 1) * limit;
+  }
+  pipeline.push({
+    "$skip": skip
+  }, 
+  {
+    "$limit": limit
+  })
+
   console.log(pipeline);
 
   const res = await prisma.listing.aggregateRaw({pipeline: pipeline});
   const listings = ParseRawListings(res);
-
-  return NextResponse.json({ data: listings });
+  return NextResponse.json({ data: listings, metadata: { page: page ? Number(page) : 1, isLastPage: listings.length < limit } });
   
 })
   
