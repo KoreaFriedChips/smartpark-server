@@ -90,9 +90,51 @@ return tryOrReturnError(async () => {
       ...otherParams
     }
   });
+
+  const sort = req.nextUrl.searchParams.getAll('sort');
+  if (sort.length > 0) {
+    let sortFields: any = {};
+    sort.forEach((sortOption) => {
+      switch (sortOption) {
+        case "ratingLowHigh":
+          sortFields.rating = 1;
+          break;
+        case "ratingHighLow":
+          sortFields.rating = -1;
+          break;
+        case "reviewsLowHigh":
+          sortFields.reviews = 1;
+          break;
+        case "reviewsHighLow":
+          sortFields.reviews = -1;
+          break;
+        case "startingPriceLowHigh":
+          sortFields.startingPrice = 1;
+          break;
+        case "startingPriceHighLow":
+          sortFields.startingPrice = -1;
+          break;
+        case "buyPriceLowHigh":
+          sortFields.buyPrice = 1;
+          break;
+        case "distanceLowHigh":
+        case "distanceHighLow":
+        case "buyPriceHighLow":
+          sortFields.buyPrice = -1;
+          break;
+        default:
+          return;
+      }
+    })
+    pipeline.push({
+      $sort: sortFields
+    })
+  }
+  console.log(pipeline);
+
   const res = await prisma.listing.aggregateRaw({pipeline: pipeline});
   const listings = ParseRawListings(res);
-  
+
   return NextResponse.json({ data: listings });
   
 })
