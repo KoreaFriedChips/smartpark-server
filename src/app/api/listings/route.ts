@@ -99,6 +99,8 @@ return tryOrReturnError(async () => {
         case "ratingLowHigh":
           sortFields.rating = 1;
           break;
+        case "distanceLowHigh":
+        case "distanceHighLow":
         case "ratingHighLow":
           sortFields.rating = -1;
           break;
@@ -117,8 +119,6 @@ return tryOrReturnError(async () => {
         case "buyPriceLowHigh":
           sortFields.buyPrice = 1;
           break;
-        case "distanceLowHigh":
-        case "distanceHighLow":
         case "buyPriceHighLow":
           sortFields.buyPrice = -1;
           break;
