@@ -54,7 +54,7 @@ model Listing {
   relist         Boolean       @default(false)
   relistDuration String?
   description    String?
-  availability   Json
+  availability   Interval[]
   active         Boolean       @default(true)
   date           DateTime
   ends           DateTime?
@@ -134,4 +134,10 @@ model Reservation {
   userId      String      @db.ObjectId
   listing     Listing     @relation(fields: [listingId], references: [id])
   listingId   String      @db.ObjectId
+}
+
+
+type Interval {
+  start DateTime
+  end DateTime
 }

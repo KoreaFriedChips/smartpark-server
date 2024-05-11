@@ -1,10 +1,9 @@
 import * as z from "zod"
 
-// Helper schema for JSON fields
-type Literal = boolean | number | string
-type Json = Literal | { [key: string]: Json } | Json[]
-const literalSchema = z.union([z.string(), z.coerce.number(), z.boolean()])
-const jsonSchema: z.ZodSchema<Json> = z.lazy(() => z.union([literalSchema, z.array(jsonSchema), z.record(jsonSchema)]))
+export const IntervalModel = z.object({
+  start: z.date(),
+  end: z.date()
+});
 
 export const ListingModel = z.object({
   id: z.string(),
@@ -23,7 +22,7 @@ export const ListingModel = z.object({
   relist: z.boolean(),
   relistDuration: z.string().nullish(),
   description: z.string().nullish(),
-  availability: jsonSchema,
+  availability: IntervalModel.array(),
   active: z.boolean(),
   date: z.date(),
   ends: z.date().nullish(),
