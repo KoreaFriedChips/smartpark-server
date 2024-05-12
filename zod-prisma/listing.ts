@@ -1,8 +1,8 @@
 import * as z from "zod"
 
 export const IntervalModel = z.object({
-  start: z.date(),
-  end: z.date()
+  start: z.coerce.date(),
+  end: z.coerce.date()
 });
 
 export const ListingModel = z.object({
@@ -24,12 +24,17 @@ export const ListingModel = z.object({
   description: z.string().nullish(),
   availability: IntervalModel.array(),
   active: z.boolean(),
-  date: z.date(),
-  ends: z.date().nullish(),
+  date: z.coerce.date(),
+  ends: z.coerce.date().nullish(),
   bids: z.coerce.number().int(),
   capacity: z.coerce.number().int(),
   spotsLeft: z.coerce.number().int(),
   tags: z.string().array(),
   amenities: z.string().array(),
   userId: z.string(),
+})
+
+export const ExtendedListingModel = ListingModel.extend({
+  rating: z.coerce.number(),
+  reviews: z.coerce.number().int(),
 })
