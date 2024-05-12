@@ -12,8 +12,9 @@ export const getUser = async (req: Request) => {
         const payload = await verifyToken(req.headers.get("token") ?? "", { jwtKey: CLERK_PUBLIC ?? "", issuer: null });
         console.log(payload);
         const userId = await getUserId(payload);
-        return { userId, payload };
-      } catch {
+        return { payload, userId };
+      } catch (err) {
+        console.log(err);
         return {
           userId: undefined,
           payload: undefined
