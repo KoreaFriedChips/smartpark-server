@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { ZodObject, ZodSchema } from 'zod';
 import { Prisma, PrismaClient } from '@prisma/client/edge.js';
 import { ExtendedListingModel, ListingModel } from '@zod-prisma';
-const prisma = new PrismaClient();
+import { prisma } from '@/lib/prisma';
 
 export const getUser = async (req: Request) => {
     try {
@@ -71,6 +71,7 @@ export const PrismaGET = async (
       return NextResponse.json({ error: "Invalid search params"}, {status:400});
     }
     const objects = await prismaModel.findMany({ where: whereParams.data });
+    if (objects.length === 0) return NextResponse.json({error: "No matching objects found"}, {status: 404});
     return NextResponse.json({ data: objects });
   } 
   catch (error) {
