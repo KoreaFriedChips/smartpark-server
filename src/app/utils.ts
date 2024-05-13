@@ -183,7 +183,6 @@ export const ParseRawListings = (rawListings: Prisma.JsonObject): ExtendedListin
     id: val._id.$oid,
     date: new Date(val.date.$date),
     ends: val.ends ? new Date(val.ends.$date) : undefined,
-    userId: val.userId.$oid,
     tags: val.tags ?? [],
     availability: val.availability.map((ival: any) => ({ start: new Date(ival.start.$date), end: new Date(ival.end.$date) }))
   }));
