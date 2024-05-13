@@ -6,12 +6,16 @@ import { Prisma, PrismaClient } from '@prisma/client/edge.js';
 import { ExtendedListingModel, ListingModel } from '@zod-prisma';
 import { prisma } from '@/lib/prisma';
 
+const CLERK_PUBLIC = "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvbidMoSkE1q5XWk3wb7D\nsZB4DxUMJgcPv2Q+e33STEn8rwrytk/fHrz8XGPMouAqNUOJnUMGOmC+LLKMc2Rm\n0kwbn4j16J4kaSrE+e60r0m2eecX/JBxKIFllEWK2Gk3NEZ1SJyL58XZHAVBDIO9\nvx1pECsFxWI7MdluyRCOaa3jjaeQSck0WGl3oiBx3KJ7e9a2/QDNJX5XGq19J4qm\nHVPTYvotXk7RcomAVGXZTgROUAtce2p7FSycyQeIweo1CmIEKjJTOQc427GExVns\nKV5sgLjqpGDHy2z6ozMHZn6FFM4fLNUop1d1MNdi6cKecGFxdxJfRrHixlv4XEIk\n4wIDAQAB\n-----END PUBLIC KEY-----"
+
 export const getUser = async (req: Request) => {
     try {
-        const payload = await verifyToken(req.headers.get("token") ?? "", { jwtKey: process.env.CLERK_PUBLIC ?? "", issuer: null });
+        const payload = await verifyToken(req.headers.get("token") ?? "", { jwtKey: CLERK_PUBLIC ?? "", issuer: null });
+        console.log(payload);
         const userId = await getUserId(payload);
-        return { userId, payload };
-      } catch {
+        return { payload, userId };
+      } catch (err) {
+        console.log(err);
         return {
           userId: undefined,
           payload: undefined

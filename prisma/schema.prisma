@@ -20,8 +20,11 @@ model Waitlist {
 
 model User {
   id             String         @id @default(auto()) @map("_id") @db.ObjectId
-  name           String
+  name           String?
   clerkId        String
+  email          String?
+  phoneNumber    String?
+  birthday       DateTime?
   description    String?
   city           String?
   state          String?
