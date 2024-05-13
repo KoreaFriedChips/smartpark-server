@@ -85,6 +85,11 @@ return tryOrReturnError(async () => {
     }
   },
   {
+    $addFields: {
+      userId: { $toString: { $getField: { field: "userId", input: "$$ROOT" } }}
+    }
+  },
+  {
     $match: {
       ...whereParams.data,
       ...otherParams
@@ -144,10 +149,10 @@ return tryOrReturnError(async () => {
     "$limit": limit
   })
 
-  console.log(pipeline);
 
   const res = await prisma.listing.aggregateRaw({pipeline: pipeline});
   const listings = ParseRawListings(res);
+  if (req.nextUrl.searchParams.has("userId")) console.log(pipeline);
   return NextResponse.json({ data: listings, metadata: { page: page ? Number(page) : 1, isLastPage: listings.length < limit } });
   
 })
