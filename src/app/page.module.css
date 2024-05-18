@@ -269,7 +269,7 @@
 .sectionAlt .bentoRow {
   flex-direction: row-reverse;
   /* gap: 4rem; */
-  gap: 2rem;
+  gap: 4rem;
 }
 
 .bentoItem {
@@ -587,6 +587,11 @@
   
   .sectionAlt .bentoSection {
     flex-direction: column;
+  }
+
+  .sectionAlt .bentoRow {
+    flex-direction: column-reverse;
+    gap: 2rem;
   }
 
   .sectionAlt img {
