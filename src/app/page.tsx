@@ -140,7 +140,7 @@ export default function Home({ searchParams }: SearchParamProps) {
           </div>
         </div>
       </main>
-      {/* <main className={styles.sectionAlt}>
+      <main className={styles.sectionAlt}>
         <div className={styles.heroSection}>
           <div className={styles.hero}>
             <p className={styles.shadowText}>HOW IT WORKS</p>
@@ -158,10 +158,26 @@ export default function Home({ searchParams }: SearchParamProps) {
                   <i>1</i>
                 </p>
                 <div className={styles.bentoText}>
-                  <h2 className={styles.selectBoxTitle}>Community-driven platform.</h2>
-                  <p className={styles.selectBoxDescription}>
-                    Join a growing community of users.
-                  </p>
+                  <h2 className={styles.selectBoxTitle}>Search & Bid.</h2>
+                  <p className={styles.selectBoxDescription}>Easily search, compare, and bid on available parking spots near you.</p>
+                </div>
+              </div>
+              <div className={styles.selectBox}>
+                <p className={styles.selectBoxIcon}>
+                  <i>2</i>
+                </p>
+                <div className={styles.bentoText}>
+                  <h2 className={styles.selectBoxTitle}>Hassle-Free Parking.</h2>
+                  <p className={styles.selectBoxDescription}>Secure your spot, pay through the app, and park your vehicle.</p>
+                </div>
+              </div>
+              <div className={styles.selectBox}>
+                <p className={styles.selectBoxIcon}>
+                  <i>3</i>
+                </p>
+                <div className={styles.bentoText}>
+                  <h2 className={styles.selectBoxTitle}>Earn Rewards.</h2>
+                  <p className={styles.selectBoxDescription}>Leave a review of your experience or earn money from listing your spot.</p>
                 </div>
               </div>
             </div>
@@ -170,7 +186,7 @@ export default function Home({ searchParams }: SearchParamProps) {
             </div>
           </div>
         </div>
-      </main> */}
+      </main>
     </>
   );
 }
