@@ -77,7 +77,8 @@
 
 .main,
 .section,
-.sectionAlt {
+.sectionAlt,
+.sectionMiddle {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -96,6 +97,12 @@
   padding: 6rem;
   background: radial-gradient(circle at bottom right, var(--accent-alt) -300%, var(--main-background) 40%);
 }
+
+.sectionMiddle {
+  padding: 6rem;
+  background: radial-gradient(circle at top right, var(--accent-alt) -250%, var(--main-background) 40%);
+}
+
 
 .sectionAlt {
   padding: 6rem;
@@ -341,10 +348,22 @@
   z-index: 0;
 }
 
+.videoPlayer {
+  width: 800px;
+  height: 800px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: auto;
+}
+
 .bentoIcon, .selectBoxIcon {
   color: var(--accent);
   opacity: 0.75;
   transition: all 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.selected {
+  background-color: rgba(0, 0, 0, 0.1); /* Adjust opacity as needed */
 }
 
 .bentoText {

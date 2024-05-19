@@ -8,6 +8,7 @@ import Link from "next/link";
 import { Sparkles, Clapperboard, Car, ParkingCircle, BadgeDollarSign, Wallet, ParkingMeter, HandHeart } from "lucide-react";
 import Script from "next/script";
 import Modal from "@/components/Modal";
+import SelectVideos from "@/components/SelectVideos";
 
 type SearchParamProps = {
   searchParams: Record<string, string> | null | undefined;
@@ -140,6 +141,14 @@ export default function Home({ searchParams }: SearchParamProps) {
           </div>
         </div>
       </main>
+
+      {/*perhaps priority may be needed to help loading */}
+      <main className={styles.sectionMiddle}>
+        <div>
+          <SelectVideos />
+        </div>
+      </main>
+      
       <main className={styles.sectionAlt}>
         <div className={styles.heroSection}>
           <div className={styles.hero}>
