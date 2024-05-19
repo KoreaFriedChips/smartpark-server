@@ -15,9 +15,9 @@ In the root directory, create one file: `.env.local`. These
 store the environment variables to setup the application.
 
 `.env.local` requires:
-- `DATABASE_URL`
-    - Available in Notion
 - `CLERK_PUBLIC`
+    - Available in Notion
+- `GOOGLE_MAPS_API_KEY`
     - Available in Notion
 - `CLERK_SECRET_KEY`
     - Can find this on the Clerk website
@@ -29,21 +29,34 @@ Here's an example `.env.local`:
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_XXXXX
 CLERK_SECRET_KEY=sk_test_XXXXX
 CLERK_PUBLIC="-----BEGIN PUBLIC KEY-----\nXXXXX\n-----END PUBLIC KEY-----"
-DATABASE_URL="mongodb+srv://XXXXX"
+GOOGLE_MAPS_API_KEY=XXXX_XXX_X
 ```
+
+In the root directory, create another file: `.dev.vars`. This
+exposes the remaining environment variables.
+
+`.dev.vars` requires:
+- `DATABASE_URL`
+    - Available in CloudFlare
+
+Here's an example `.dev.vars`:
+```
+DATABASE_URL="prisma://XXXX"
+```
+    
 
 ## Running
 Run `npx prisma generate` to generate the Prisma client. 
 
 There are two ways to run the server locally. The first way is the simplest—run
-`npm run dev`. However, there are caveats. If we want to test out how
-Cloudflare specific runtime environments work (such as connecting to an R2
-bucket), using this command won't work. If you're not testing anything with
-Cloudflare, don't worry about this.
+`npm run dev`. 
 
 We can create a "mini-flare" setup that emulates a Cloudflare production
 environment locally. Using `npm run test` to do that. Make sure you have
 `wrangler` installed and logged in. 
+
+**Note**: some libraries will work with `npm run dev` but not `npm run test`,
+and vice versa. When adding new libraries, be sure to test with both. 
 
 ## Database
 We use Prisma as a layer between our application and our database (as of right
