@@ -364,7 +364,24 @@
 
 .selected {
   background-color: rgba(0, 0, 0, 0.1); /* Adjust opacity as needed */
+} 
+
+@keyframes outlineAnimation {
+  from {
+    outline-width: 0;
+    outline-color: transparent;
+  }
+  to {
+    outline-width: 2px;
+    outline-color: var(--accent);
+  }
 }
+
+.selectedAccent {
+  outline: 2px solid transparent;
+  animation: outlineAnimation 0.2s ease forwards;
+}
+
 
 .bentoText {
   display: flex;
@@ -395,6 +412,7 @@
   padding: 1.25rem 1.5rem;
   gap: 1rem;
   width: 400px;
+  transition: outline-color 0.3s, outline-width 0.3s;
 }
 
 .selectBoxIcon {

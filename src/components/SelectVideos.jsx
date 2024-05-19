@@ -9,12 +9,14 @@ const birdfiller = "/birdfiller.mp4";
 const orangefiller = "/orangefiller.mp4";
 
 function VideoSwitcher() {
-  // Initialize state with the default video URL
+  // init video and init state of selected box
   const [videoFile, setVideoFile] = useState(birdfiller);
+  const [selectedVideo, setSelectedVideo] = useState(birdfiller);
 
   const switchVideo = (newFile) => {
     setVideoFile(newFile);
-  }; /* used by switchVideo(videoYouWant)*/
+    setSelectedVideo(newFile);
+  };
 
   return (
     <div className={styles.buttonContainer}>
@@ -23,7 +25,7 @@ function VideoSwitcher() {
       <div className={styles.bentoContainer}>
         <div className={styles.bentoRow}>
           <div className={styles.bentoSection}>
-            <div className={styles.selectBox}>
+            <div className={`${styles.selectBox} ${selectedVideo === birdfiller ? styles.selectedAccent : ''}`}>
               <div className={styles.bentoText} onClick={() => switchVideo(birdfiller)}>
                 <h2 className={styles.bentoTitle}>Birds Title Placeholder</h2>
                 <p className={styles.bentoDescription}>
@@ -32,7 +34,7 @@ function VideoSwitcher() {
               </div>
             </div>
 
-            <div className={styles.selectBox}>
+            <div className={`${styles.selectBox} ${selectedVideo === orangefiller ? styles.selectedAccent : ''}`}>
               <div className={styles.bentoText} onClick={() => switchVideo(orangefiller)}>
                 <h2 className={styles.bentoTitle}>Orange Title Placeholder</h2>
                 <p className={styles.bentoDescription}>
