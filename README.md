@@ -16,9 +16,9 @@ store the environment variables to setup the application.
 
 `.env.local` requires:
 - `CLERK_PUBLIC`
-    - Available in Notion
+    - Available in Cloudflare
 - `GOOGLE_MAPS_API_KEY`
-    - Available in Notion
+    - Available in Cloudflare
 - `CLERK_SECRET_KEY`
     - Can find this on the Clerk website
 - `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`
