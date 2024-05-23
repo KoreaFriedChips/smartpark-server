@@ -55,7 +55,7 @@ export default function Home({ searchParams }: SearchParamProps) {
             </div>
           </div>
         </div>
-        <Image src={"/SMARTPARK-DEMO-2.png"} alt="SmartPark demo" className={styles.heroImage} width={1920} height={1080} priority />
+        <Image src={"/SMARTPARK-DEMO-2.webp"} alt="SmartPark demo" className={styles.heroImage} width={1920} height={1080} priority />
         {/* <p className={styles.miniDescription}>
           *Available for download on the Apple App Store and Google Play Store on <i>May 30th</i>.
         </p> */}
@@ -98,7 +98,7 @@ export default function Home({ searchParams }: SearchParamProps) {
                 </div>
                 {/* <div className={styles.overlayHorizontal}></div> */}
                 <div className={styles.bentoImage}>
-                  <Image src={"/SMARTPARK-DEMO-4-SMALL.png"} alt="SmartPark demo" width={400} height={192} priority />
+                  <Image src={"/SMARTPARK-DEMO-4-SMALL.webp"} alt="SmartPark demo" width={400} height={192} priority />
                 </div>
               </div>
               <div className={styles.bentoSection}>
@@ -135,7 +135,7 @@ export default function Home({ searchParams }: SearchParamProps) {
                 </p>
               </div>
               <div className={styles.bentoImageSide}>
-                <Image src={"/SMARTPARK-DEMO-SMALL-ALT.png"} alt="SmartPark demo" width={300} height={176} priority />
+                <Image src={"/SMARTPARK-DEMO-SMALL-ALT.webp"} alt="SmartPark demo" width={300} height={176} priority />
               </div>
             </div>
           </div>
