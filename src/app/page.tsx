@@ -141,13 +141,6 @@ export default function Home({ searchParams }: SearchParamProps) {
           </div>
         </div>
       </main>
-
-      {/*perhaps priority may be needed to help loading */}
-      <main className={styles.sectionMiddle}>
-        <div>
-          <SelectVideos />
-        </div>
-      </main>
       
       <main className={styles.sectionAlt}>
         <div className={styles.heroSection}>
@@ -159,41 +152,8 @@ export default function Home({ searchParams }: SearchParamProps) {
             <p className={styles.subDescription}>With SmartPark's advanced features and intuitive functionality, start finding your next spot now.</p>
           </div>
         </div>
-        <div className={styles.bentoContainer}>
-          <div className={styles.bentoRow}>
-            <div className={styles.bentoSection}>
-              <div className={styles.selectBox}>
-                <p className={styles.selectBoxIcon}>
-                  <i>1</i>
-                </p>
-                <div className={styles.bentoText}>
-                  <h2 className={styles.selectBoxTitle}>Search & Bid.</h2>
-                  <p className={styles.selectBoxDescription}>Easily search, compare, and bid on available parking spots near you.</p>
-                </div>
-              </div>
-              <div className={styles.selectBox}>
-                <p className={styles.selectBoxIcon}>
-                  <i>2</i>
-                </p>
-                <div className={styles.bentoText}>
-                  <h2 className={styles.selectBoxTitle}>Hassle-Free Parking.</h2>
-                  <p className={styles.selectBoxDescription}>Secure your spot, pay through the app, and park your vehicle.</p>
-                </div>
-              </div>
-              <div className={styles.selectBox}>
-                <p className={styles.selectBoxIcon}>
-                  <i>3</i>
-                </p>
-                <div className={styles.bentoText}>
-                  <h2 className={styles.selectBoxTitle}>Earn Rewards.</h2>
-                  <p className={styles.selectBoxDescription}>Leave a review of your experience or earn money from listing your spot.</p>
-                </div>
-              </div>
-            </div>
-            <div className={styles.bentoSection}>
-              <Image src={"/SMARTPARK-DEMO-SMALL.png"} alt="SmartPark demo" width={400} height={556} priority />
-            </div>
-          </div>
+        <div>
+          <SelectVideos />
         </div>
       </main>
     </>
