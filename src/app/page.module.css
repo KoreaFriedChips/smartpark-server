@@ -100,7 +100,7 @@
 
 .sectionMiddle {
   padding: 6rem;
-  background: radial-gradient(circle at top right, var(--accent-alt) -250%, var(--main-background) 40%);
+  background: radial-gradient(circle at top left, var(--accent-alt) -250%, var(--main-background) 40%);
 }
 
 
@@ -179,6 +179,13 @@
   max-width: 700px;
   font-size: 1rem;
   line-height: 1.4rem;
+}
+
+.subDescriptionThin {
+  max-width: 500px;
+  font-size: 1rem;
+  line-height: 1.4rem;
+  text-align: center;
 }
 
 .miniDescription {

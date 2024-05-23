@@ -9,6 +9,7 @@ import { Sparkles, Clapperboard, Car, ParkingCircle, BadgeDollarSign, Wallet, Pa
 import Script from "next/script";
 import Modal from "@/components/Modal";
 import SelectVideos from "@/components/SelectVideos";
+import DemoSection from "@/components/DemoSection";
 
 type SearchParamProps = {
   searchParams: Record<string, string> | null | undefined;
@@ -156,6 +157,22 @@ export default function Home({ searchParams }: SearchParamProps) {
           <SelectVideos />
         </div>
       </main>
+
+      <main className={styles.sectionMiddle}>
+        <div className={styles.heroSection}>
+          <div className={styles.hero}>
+            <p className={styles.shadowText}>APP FEATURES</p>
+            <h1 className={styles.subtitle}>
+              <i></i>Meet your next favorite app.
+            </h1>
+            <p className={styles.subDescriptionThin}>SmartPark is designed with the user in mind, offering a streamlined and intuitive experience that makes parking a breeze.</p>
+          </div>
+        </div>
+        <div>
+          <DemoSection />
+        </div>
+      </main>
+      
     </>
   );
 }
