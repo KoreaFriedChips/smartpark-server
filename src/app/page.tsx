@@ -10,6 +10,7 @@ import Script from "next/script";
 import Modal from "@/components/Modal";
 import SelectVideos from "@/components/SelectVideos";
 import DemoSection from "@/components/DemoSection";
+import AboutUs from "@/components/AboutUs";
 
 type SearchParamProps = {
   searchParams: Record<string, string> | null | undefined;
@@ -168,8 +169,24 @@ export default function Home({ searchParams }: SearchParamProps) {
             <p className={styles.subDescriptionThin}>SmartPark is designed with the user in mind, offering a streamlined and intuitive experience that makes parking a breeze.</p>
           </div>
         </div>
+
         <div>
           <DemoSection />
+        </div>
+      </main>
+
+      <main className={styles.sectionMiddle}>
+        <div className={styles.heroSection}>
+          <div className={styles.hero}>
+            <p className={styles.shadowText}>OUR STORY</p>
+            <h1 className={styles.subtitle}>The
+              <i> future </i>of parking.
+            </h1>
+            <p className={styles.subDescriptionThinner}>SmartPark was created by a small team of young entrepreneurs, designers, creators, and developers to help solve parking issues within our communities.</p>
+          </div>
+        </div>     
+        <div>
+          <AboutUs />
         </div>
       </main>
       
