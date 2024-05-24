@@ -30,8 +30,8 @@ export const sendFirebaseCloudMessage = async (token: string, data: FirebaseNoti
         token,
         data,
         notification: {
-          title: "This is a FCM notification!",
-          body: "this is an FCM notif body! Click!"
+          title: data.title,
+          body: data.description
         }
        }
     })
