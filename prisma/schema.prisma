@@ -47,6 +47,7 @@ model Listing {
   images         String[]
   latitude       Float
   longitude      Float
+  coordinates    GeoJSONPoint
   distance       Float         @default(0)
   address        String
   city           String
@@ -143,4 +144,9 @@ model Reservation {
 type Interval {
   start DateTime
   end DateTime
+}
+
+type GeoJSONPoint {
+  type          String
+  coordinates   Float[]
 }

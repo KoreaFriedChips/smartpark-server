@@ -18,7 +18,13 @@ return tryOrReturnError(async () => {
   let data: any = await req.json();
   data.userId = userId;
   const listing = await prisma.listing.create({
-    data: data
+    data: {
+      ...data,
+      coordinates: {
+        type: "Point",
+        coordinates: [data.longitude, data.latitude]
+      }
+    }
   });
 
   return NextResponse.json({ data: {...listing, rating: 0, reviews: 0 } });
