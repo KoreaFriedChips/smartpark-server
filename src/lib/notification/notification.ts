@@ -5,10 +5,10 @@ const send = async (userId: string, title: string, description: string) => {
   await toAllDevices(userId, title, description);
 }
 
-const toAllDevices = async (userId: string, title: string, description: string) => {
+const toAllDevices = async (userId: string, title: string, description: string, path?: string) => {
   const pushTokens = await getUserPushTokens(userId);
   for (const pushToken of pushTokens) {
-    await sendFirebaseCloudMessage(pushToken, { title, description, date: new Date() });
+    await sendFirebaseCloudMessage(pushToken, { title, description, date: new Date(), path });
   }
 }
 

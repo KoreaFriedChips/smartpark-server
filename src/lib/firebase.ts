@@ -13,7 +13,8 @@ const getFirebaseAccessToken = async () => {
 export type FirebaseNotificationData = {
   title: string,
   description: string,
-  date: Date
+  date: Date,
+  path?: string,
 }
 
 export const sendFirebaseCloudMessage = async (token: string, data: FirebaseNotificationData) => {
