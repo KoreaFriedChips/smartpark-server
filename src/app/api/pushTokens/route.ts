@@ -10,12 +10,15 @@ return tryOrReturnError(async () => {
   const data: any = await req.json();
   const pushToken = data.pushToken;
   if (!pushToken) return NextResponse.json({error: 'pushToken required'}, {status: 400});
-  const user = await prisma.user.findUnique({
-    where: {id: userId},
-    select: {pushTokens: true}
+  const user = await prisma.user.findFirst({
+    where: {
+      id: userId,
+      pushTokens: {
+        has: pushToken,
+      }
+    },
   });
-  if (!user) throw new Error("user not found");
-  if (pushToken in user.pushTokens) return NextResponse.json({message: "pushToken already exists"});
+  if (user) return NextResponse.json({message: "pushToken already exists"});
   
   await prisma.user.update({
     where: {
