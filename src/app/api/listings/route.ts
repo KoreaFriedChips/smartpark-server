@@ -33,7 +33,7 @@ return tryOrReturnError(async () => {
 
 export const GET = async (
     req: NextRequest
-) => {
+) => { 
 return tryOrReturnError(async () => {
   const { userId, payload } = await getUser(req);
   if (!payload) return NextResponse.json({ error: "Bad JWT" }, { status: 403 });
@@ -51,6 +51,11 @@ return tryOrReturnError(async () => {
     req.nextUrl.searchParams.delete('amenities');
   }
 
+  const latitude = req.nextUrl.searchParams.get('latitude');
+  if (latitude) req.nextUrl.searchParams.delete('latitude');
+  const longitude = req.nextUrl.searchParams.get('longitude');
+  if (longitude) req.nextUrl.searchParams.delete('longitude');
+
   const whereParams: any = ListingModel.partial().safeParse(searchParamsToJSON(req.nextUrl.searchParams));
   if (!whereParams.success) {
     return NextResponse.json({ error: "Invalid search params"}, {status:400});
@@ -59,17 +64,57 @@ return tryOrReturnError(async () => {
   let pipeline: any[] = [];
 
   const search = req.nextUrl.searchParams.get('search');
-  if (search) {
-    pipeline.push({ 
-      $search: {
-      "index": "listingTextSearch",
-      text: {
-        query: search,
-        path: { wildcard: "*" }
+  
+
+  const searchQuery = { 
+    $search: {
+    "index": "listingTextSearch",
+    text: {
+      query: search,
+      path: { wildcard: "*" }
+    }
+    } 
+  };
+
+  if (search && latitude && longitude){
+    const textSearchResults = await prisma.listing.aggregateRaw({pipeline: [
+      searchQuery,
+      {
+        $project: {
+          _id: 1
+        }
       }
-      } 
-    } );
+    ]});
+    
+    if (!(textSearchResults instanceof Array)) throw new Error("search error");
+    const textSearchResultIds = textSearchResults.map((doc) => doc._id);
+
+    pipeline.push({
+      $geoNear: {
+        near: {
+            type: "Point",
+            coordinates: [Number(longitude), Number(latitude)]
+        },
+        distanceField: "distance",
+        spherical: true,
+        query: { _id: { $in: textSearchResultIds } }
+    }
+    })
+  } else if (search) {
+    pipeline.push(searchQuery);
+  } else if (latitude && longitude) {
+    pipeline.push({
+        $geoNear: {
+          near: {
+              type: "Point",
+              coordinates: [Number(longitude), Number(latitude)]
+          },
+          distanceField: "distance",
+          spherical: true
+      }
+    })
   }
+
 
   pipeline.push({
     $addFields: {
@@ -111,7 +156,11 @@ return tryOrReturnError(async () => {
           sortFields.rating = 1;
           break;
         case "distanceLowHigh":
+          sortFields.distance = 1; 
+          break;
         case "distanceHighLow":
+          sortFields.distance = -1;
+          break;
         case "ratingHighLow":
           sortFields.rating = -1;
           break;
@@ -155,8 +204,9 @@ return tryOrReturnError(async () => {
     "$limit": limit
   })
 
-
+  // console.log(pipeline);
   const res = await prisma.listing.aggregateRaw({pipeline: pipeline});
+  console.log(res);
   const listings = ParseRawListings(res);
   if (req.nextUrl.searchParams.has("userId")) console.log(pipeline);
   return NextResponse.json({ data: listings, metadata: { page: page ? Number(page) : 1, isLastPage: listings.length < limit } });

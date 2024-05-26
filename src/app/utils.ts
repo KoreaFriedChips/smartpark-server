@@ -175,6 +175,10 @@ export const PrismaDELETE = async (
   }
 }
 
+function getMiles(meters: number) {
+  return meters*0.000621371192;
+}
+
 export const ParseRawListings = (rawListings: Prisma.JsonObject): ExtendedListing[] => {
   if (!(rawListings instanceof Array)) throw new Error ("rawListings should be an array");
   
@@ -184,7 +188,8 @@ export const ParseRawListings = (rawListings: Prisma.JsonObject): ExtendedListin
     date: new Date(val.date.$date),
     ends: val.ends ? new Date(val.ends.$date) : undefined,
     tags: val.tags ?? [],
-    availability: val.availability.map((ival: any) => ({ start: new Date(ival.start.$date), end: new Date(ival.end.$date) }))
+    availability: val.availability.map((ival: any) => ({ start: new Date(ival.start.$date), end: new Date(ival.end.$date) })),
+    distance: getMiles(val.distance)
   }));
 
   return ExtendedListingModel.array().parse(listings)
