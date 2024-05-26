@@ -39,6 +39,8 @@ model User {
   Favorite       Favorite[]
   Confirmation   Confirmation[]
   Reservation    Reservation[]
+  sendMessages   Message[] @relation("sent")
+  receivedMessages  Message[] @relation("received")
 }
 
 model Listing {
@@ -139,6 +141,17 @@ model Reservation {
   userId      String      @db.ObjectId
   listing     Listing     @relation(fields: [listingId], references: [id])
   listingId   String      @db.ObjectId
+}
+
+model Message {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  message       String
+  date          DateTime  @default(now())
+  attachments   String[]
+  fromUserId    String  @db.ObjectId
+  toUserId      String  @db.ObjectId
+  fromUser      User    @relation(fields: [fromUserId], references: [id], name: "sent")
+  toUser        User    @relation(fields: [toUserId], references: [id], name: "received")
 }
 
 type Interval {
