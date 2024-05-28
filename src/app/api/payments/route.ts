@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client/edge.js";
 import { PrismaPOST, getUser } from "@/app/utils";
 import Stripe from "stripe";
+import { NextApiRequest, NextApiResponse } from "next/types";
 
 const prisma = new PrismaClient();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
@@ -16,7 +17,7 @@ export const POST = async (req: NextRequest) => {
 
   console.log("req: ", req);
   let data: any = await req.json();
-  const { amount, currency } = data;
+  const { amount, currency, sellerId } = data;
   console.log("data: ", data);
 
   if (!amount || !currency) {
@@ -25,14 +26,29 @@ export const POST = async (req: NextRequest) => {
       { status: 400 }
     );
   }
+  const seller = await prisma.user.findUnique({
+    where: {
+      id: sellerId,
+    },
+  });
+  if (!seller || !seller.stripeAccountId) {
+    return NextResponse.json(
+      { error: "Seller not found or not connected to Stripe" },
+      { status: 400 }
+    );
+  }
 
   try {
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: amount * 1.075,
+      amount: Math.round(amount * 1.075),
       currency,
+      application_fee_amount: Math.round(amount * 0.075),
       automatic_payment_methods: {
         enabled: true,
-      }
+      },
+      transfer_data: {
+        destination: seller.stripeAccountId,
+      },
     });
 
     console.log("paymentIntent: ", paymentIntent);
@@ -48,3 +64,4 @@ export const POST = async (req: NextRequest) => {
     }
   }
 };
+
