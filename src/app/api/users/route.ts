@@ -47,7 +47,8 @@ return tryOrReturnError(async () => {
     return {
       ...user,
       reviews: agg._count.id,
-      rating: agg._avg.rating
+      rating: agg._avg.rating,
+      clerkId: undefined,
     }
   }));
 
