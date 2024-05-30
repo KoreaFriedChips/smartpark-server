@@ -11,6 +11,7 @@ import Modal from "@/components/Modal";
 import SelectVideos from "@/components/SelectVideos";
 import DemoSection from "@/components/DemoSection";
 import AboutUs from "@/components/AboutUs";
+import Faq from "@/components/Faq";
 
 type SearchParamProps = {
   searchParams: Record<string, string> | null | undefined;
@@ -187,6 +188,12 @@ export default function Home({ searchParams }: SearchParamProps) {
         </div>     
         <div>
           <AboutUs />
+        </div>
+      </main>
+
+      <main className={styles.sectionMiddle}>
+        <div className={styles.heroSection}>
+          <Faqs />
         </div>
       </main>
       

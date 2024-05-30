@@ -2,7 +2,6 @@ import styles from "../app/page.module.css";
 import React, { useState } from 'react';
 import Link from "next/link";
 import Image from "next/image";
-import dynamic from 'next/dynamic';
 import {CircleCheckBig} from "lucide-react";
 import {Download} from "lucide-react";
 

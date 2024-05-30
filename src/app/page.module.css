@@ -184,6 +184,18 @@
   -webkit-text-fill-color: transparent;
 }
 
+.faqTitle {
+  font-size: 4rem;
+  margin-bottom: 0.75rem;
+  font-weight: 800;
+  max-width: 400px;
+  /* background: linear-gradient(120deg, var(--primary) 65%, var(--accent)); */
+  background: linear-gradient(120deg, var(--primary) 70%, var(--third));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .subtitle {
   color: var(--primary);
   text-align: center;
@@ -698,6 +710,11 @@
   }
 
   .title {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+
+  .faqTitle {
     font-size: 3rem;
     font-weight: 700;
   }
