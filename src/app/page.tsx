@@ -193,7 +193,7 @@ export default function Home({ searchParams }: SearchParamProps) {
 
       <main className={styles.sectionMiddle}>
         <div className={styles.heroSection}>
-          <Faqs />
+          <Faq />
         </div>
       </main>
       
