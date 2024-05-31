@@ -54,7 +54,6 @@ export const sendFCMNotification = async (token: string, data: FirebaseNotificat
 export type FirebaseMessageData = FirebaseNotificationData & {
   id: string,
   message: string,
-  date: Date,
   attachments: string[],
   fromUserId: string,
   toUserId: string,
@@ -64,6 +63,9 @@ export type FirebaseMessageData = FirebaseNotificationData & {
 }
 
 export const sendFCMMessage = async (token: string, data: FirebaseMessageData) => {
-  return sendFCM(token, data);
+  return sendFCM(token, {
+    ...data,
+    attachments: JSON.stringify(data.attachments),
+  });
 }
 
