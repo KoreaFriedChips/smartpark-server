@@ -1,4 +1,4 @@
-import { sendFirebaseCloudMessage } from "@/lib/firebase"
+import { sendFCMNotification } from "@/lib/firebase"
 import { prisma } from "@/lib/prisma"
 
 const send = async (userId: string, title: string, description: string) => {
@@ -8,7 +8,7 @@ const send = async (userId: string, title: string, description: string) => {
 const toAllDevices = async (userId: string, title: string, description: string, path?: string) => {
   const pushTokens = await getUserPushTokens(userId);
   for (const pushToken of pushTokens) {
-    await sendFirebaseCloudMessage(pushToken, { title, description, date: new Date(), path });
+    await sendFCMNotification(pushToken, { title, description, date: new Date(), path });
   }
 }
 

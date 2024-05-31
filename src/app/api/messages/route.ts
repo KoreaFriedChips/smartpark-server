@@ -2,6 +2,7 @@ import { getUser, tryOrReturnError } from "@/app/utils";
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { CreateMessageModel } from "@zod-prisma";
+import SendMessage from "@/lib/message";
 
 export const POST = async (
   req: NextRequest
@@ -19,7 +20,18 @@ return tryOrReturnError(async () => {
 
   const message = await prisma.message.create({
     data: messageParse.data
-  })
+  });
+
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: {
+      name: true,
+      profilePicture: true
+    }
+  });
+  if (!user) throw new Error('user not found');
+
+  SendMessage.toAllDevices(message, user.name, user.profilePicture as string);
 
   return NextResponse.json({data: message});
 });}
