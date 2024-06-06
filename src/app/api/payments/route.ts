@@ -39,13 +39,23 @@ export const POST = async (req: NextRequest) => {
   }
 
   try {
+    const taxCalculation = await stripe.taxRates.create({
+      display_name: "VAT",
+      inclusive: false,
+      percentage: 5,
+      country: "US",
+    });
+ 
+    const costAfterFees = Math.round((amount * 1.075 * (1 + taxCalculation.percentage / 100) * 1.029 + 30));
+    console.log("costAfterFees: ", costAfterFees);
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: Math.round(amount * 1.075),
+      amount: Math.round(costAfterFees),
       currency,
-      application_fee_amount: Math.round(amount * 0.075),
+      application_fee_amount: Math.round(costAfterFees - amount),
       automatic_payment_methods: {
         enabled: true,
       },
+      
       transfer_data: {
         destination: seller.stripeAccountId,
       },
@@ -55,6 +65,7 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.json({ paymentIntent }, { status: 200 });
   } catch (error: unknown) {
     if (error instanceof Error) {
+      console.error(error.message);
       return NextResponse.json({ error: error.message }, { status: 500 });
     } else {
       return NextResponse.json(
