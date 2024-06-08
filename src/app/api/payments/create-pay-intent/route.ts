@@ -55,7 +55,7 @@ export const POST = async (req: NextRequest) => {
       automatic_payment_methods: {
         enabled: true,
       },
-      
+      capture_method: "manual",
       transfer_data: {
         destination: seller.stripeAccountId,
       },
