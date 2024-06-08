@@ -62,7 +62,7 @@ export const POST = async (req: NextRequest) => {
     });
 
     console.log("paymentIntent: ", paymentIntent);
-    return NextResponse.json({ paymentIntent }, { status: 200 });
+    return NextResponse.json({ data: paymentIntent }, { status: 200 });
   } catch (error: unknown) {
     if (error instanceof Error) {
       console.error(error.message);
