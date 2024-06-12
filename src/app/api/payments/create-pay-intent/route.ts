@@ -54,6 +54,7 @@ export const POST = async (req: NextRequest) => {
       application_fee_amount: Math.round(costAfterFees - amount),
       automatic_payment_methods: {
         enabled: true,
+        allow_redirects: "never"
       },
       capture_method: "manual",
       transfer_data: {

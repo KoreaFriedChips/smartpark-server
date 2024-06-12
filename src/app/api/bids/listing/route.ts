@@ -24,7 +24,6 @@ export const GET = async (req: NextRequest) => {
   try {
     const bids = await prisma.bid.findMany({
       where: { listingId },
-      orderBy: { createdAt: 'desc' }
     });
     console.log("bids: ", bids);
     return NextResponse.json({ data: bids }, { status: 200 });

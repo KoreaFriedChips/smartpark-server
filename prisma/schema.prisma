@@ -99,7 +99,9 @@ model Bid {
   user      User     @relation(fields: [userId], references: [id])
   listing   Listing  @relation(fields: [listingId], references: [id])
   userId    String   @db.ObjectId
+  stripePaymentIntentId String?
   listingId String   @db.ObjectId
+  status   String   @default("pending")
 }
 
 model Transaction {

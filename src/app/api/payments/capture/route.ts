@@ -7,7 +7,7 @@ import { NextApiRequest, NextApiResponse } from "next/types";
 const prisma = new PrismaClient();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
 
-export const POST = async (req: NextRequest) => {
+export const PUT = async (req: NextRequest) => {
   const { userId, payload } = await getUser(req);
   console.log("userId: ", userId);
   console.log("payload: ", payload);
@@ -17,13 +17,32 @@ export const POST = async (req: NextRequest) => {
 
   console.log("req: ", req);
   let data: any = await req.json();
-  const { paymentIntent } = data;
+  const { bidId } = data;
   console.log("data: ", data);
 
   try {
-    const confirmedPaymentIntent = await stripe.paymentIntents.confirm(paymentIntent.id);
-    console.log("confirmedPaymentIntent: ", confirmedPaymentIntent);
-    const capturedPaymentIntent = await stripe.paymentIntents.capture(paymentIntent.id);
+    const bid = await prisma.bid.findUnique({
+      where: {
+        id: bidId,
+      },
+    });
+    if (!bid) {
+      return NextResponse.json(
+        { error: "Bid not found" },
+        { status: 404 }
+      );
+    }
+    // update bid status to "captured"
+    await prisma.bid.update({
+      where: { id: bidId },
+      data: { status: "captured" },
+    });
+    const paymentIntentId = bid.stripePaymentIntentId;
+    // const confirmedPaymentIntent = await stripe.paymentIntents.confirm(paymentIntentId, {
+    //     return_url: "https://trysmartpark.com" 
+    //   });
+    // console.log("confirmedPaymentIntent: ", confirmedPaymentIntent);
+    const capturedPaymentIntent = await stripe.paymentIntents.capture(paymentIntentId);
     console.log("capturedPaymentIntent: ", capturedPaymentIntent);
 
     return NextResponse.json({ capturedPaymentIntent }, { status: 200 });
