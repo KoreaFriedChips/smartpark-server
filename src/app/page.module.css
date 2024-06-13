@@ -297,6 +297,25 @@
   transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
+.signUpButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.2;
+  box-sizing: border-box;
+  border-top: 0.5px solid var(--line);
+  border-bottom: 0.5px solid var(--line-alt);
+  box-shadow: 2px 4px 5.5px var(--shadow);
+  font-size: 1.15rem;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  background: var(--accent);
+  color: var(--main);
+  font-weight: 600;
+}
+
 .buttonMain,
 .buttonDownload {
   background: var(--accent);

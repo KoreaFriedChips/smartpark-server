@@ -49,6 +49,10 @@ export default function Footer() {
 
           <div className={styles.columnContainer}>
             <h3 className={styles.footerHeader}> Join the wait list</h3>
+            <p className={styles.footerList}>Be notified when the app has launched</p>
+            <Link href={"?show=true"} className={styles.signUpButton} role="button">
+              Sign up now
+            </Link>
           </div>
 
         </div>
