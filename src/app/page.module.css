@@ -22,6 +22,39 @@
   padding-bottom: 1.25rem;
 }
 
+.aboutUsContainer {
+  margin-top: 5rem;
+}
+
+.aboutUsTextContainer {
+  color: var(--third);
+  max-width: 350px;
+  line-height: 1.25rem;
+  margin: 0 auto;
+  margin-top: 1rem;
+}
+
+.listContainer {
+  display: flex;
+  margin-top: 0.5rem;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+  align-items: center;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.downloadContainer {  
+  margin-top: 2rem;
+  
+}
+
+.columnContainer {
+  padding-left: 5rem;
+  padding-right: 5rem;
+  gap: 5rem;
+}
+
 .footer {
   width: 100%;
 }
@@ -58,6 +91,21 @@
   font-size: 1rem;
 }
 
+.footerContainer {
+  margin-top: 1rem;
+  display: flex;
+}
+
+.footerHeader {
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.footerList {
+  margin-top: 1rem;
+  color: var(--third);
+}
+
 .socialContainer {
   display: flex;
   justify-content: center;
@@ -77,7 +125,8 @@
 
 .main,
 .section,
-.sectionAlt {
+.sectionAlt,
+.sectionMiddle {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -96,6 +145,12 @@
   padding: 6rem;
   background: radial-gradient(circle at bottom right, var(--accent-alt) -300%, var(--main-background) 40%);
 }
+
+.sectionMiddle {
+  padding: 6rem;
+  background: radial-gradient(circle at top left, var(--accent-alt) -250%, var(--main-background) 40%);
+}
+
 
 .sectionAlt {
   padding: 6rem;
@@ -142,6 +197,18 @@
   -webkit-text-fill-color: transparent;
 }
 
+.faqTitle {
+  font-size: 4rem;
+  margin-bottom: 0.75rem;
+  font-weight: 800;
+  max-width: 400px;
+  /* background: linear-gradient(120deg, var(--primary) 65%, var(--accent)); */
+  background: linear-gradient(120deg, var(--primary) 70%, var(--third));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .subtitle {
   color: var(--primary);
   text-align: center;
@@ -172,6 +239,20 @@
   max-width: 700px;
   font-size: 1rem;
   line-height: 1.4rem;
+}
+
+.subDescriptionThinner {
+  max-width: 600px;
+  font-size: 1rem;
+  line-height: 1.4rem;
+  text-align: center;
+}
+
+.subDescriptionThin {
+  max-width: 500px;
+  font-size: 1rem;
+  line-height: 1.4rem;
+  text-align: center;
 }
 
 .miniDescription {
@@ -215,11 +296,46 @@
   transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.buttonMain {
+.signUpButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.2;
+  box-sizing: border-box;
+  border-top: 0.5px solid var(--line);
+  border-bottom: 0.5px solid var(--line-alt);
+  box-shadow: 2px 4px 5.5px var(--shadow);
+  font-size: 1.15rem;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  background: var(--accent);
+  color: var(--main);
+  font-weight: 600;
+}
+
+.buttonMain,
+.buttonDownload {
   background: var(--accent);
   /* background: linear-gradient(-200deg, var(--accent-alt), var(--accent)); */
   color: var(--main);
   font-weight: 600;
+}
+
+.buttonDownload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 0.5rem;
+  padding: 0.625rem 0rem;
+  box-sizing: border-box;
+  border-top: 0.5px solid var(--line);
+  border-bottom: 0.5px solid var(--line-alt);
+  box-shadow: 2px 4px 5.5px var(--shadow);
+  font-size: 1.15rem;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .buttonBox {
@@ -301,6 +417,70 @@
   transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
+.bentoBoxTriple {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between !important;
+  gap: 1.25rem;
+  padding: 1.75rem 2.4rem;
+  /* padding: 1.5rem 1.25rem; */
+  border-radius: 0.5rem;
+  border-top: 0.5px solid var(--line);
+  /* border-bottom: 0.5px solid var(--line-alt); */
+  border: 0.5px solid var(--line-alt);
+  background: var(--main-background);
+  /* backdrop-filter: blur(4px); */
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  box-sizing: border-box;
+  box-shadow: 2px 4px 5.5px var(--shadow);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.bentoBoxSemiWide {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between !important;
+  gap: 1.25rem;
+  padding: 1.75rem 3rem;
+  /* padding: 1.5rem 1.25rem; */
+  border-radius: 0.5rem;
+  border-top: 0.5px solid var(--line);
+  /* border-bottom: 0.5px solid var(--line-alt); */
+  border: 0.5px solid var(--line-alt);
+  background: var(--main-background);
+  /* backdrop-filter: blur(4px); */
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  box-sizing: border-box;
+  box-shadow: 2px 4px 5.5px var(--shadow);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+
+.bentoBoxWide {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between !important;
+  gap: 1.25rem;
+  padding: 1.75rem 7.6rem;
+  /* padding: 1.5rem 1.25rem; */
+  border-radius: 0.5rem;
+  border-top: 0.5px solid var(--line);
+  /* border-bottom: 0.5px solid var(--line-alt); */
+  border: 0.5px solid var(--line-alt);
+  background: var(--main-background);
+  /* backdrop-filter: blur(4px); */
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  box-sizing: border-box;
+  box-shadow: 2px 4px 5.5px var(--shadow);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
 /* .bentoBox:has(.bentoImage) {
   padding-bottom: 0;
 } */
@@ -341,11 +521,46 @@
   z-index: 0;
 }
 
+.videoPlayer {
+  width: 800px;
+  height: 800px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: auto;
+}
+
+.imageCircleCropper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
 .bentoIcon, .selectBoxIcon {
   color: var(--accent);
   opacity: 0.75;
   transition: all 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
+
+.selected {
+  background-color: rgba(0, 0, 0, 0.1); /* Adjust opacity as needed */
+} 
+
+@keyframes outlineAnimation {
+  from {
+    outline-width: 0;
+    outline-color: transparent;
+  }
+  to {
+    outline-width: 2px;
+    outline-color: var(--accent);
+  }
+}
+
+.selectedAccent {
+  outline: 2px solid transparent;
+  animation: outlineAnimation 0.2s ease forwards;
+}
+
 
 .bentoText {
   display: flex;
@@ -376,6 +591,7 @@
   padding: 1.25rem 1.5rem;
   gap: 1rem;
   width: 400px;
+  transition: outline-color 0.3s, outline-width 0.3s;
 }
 
 .selectBoxIcon {
@@ -417,6 +633,7 @@
 
   .button:hover,
   .buttonMain:hover,
+  .buttonDownload:hover,
   .bentoBox:hover,
   .selectBox:hover {
     background: var(--line-alt);
@@ -443,6 +660,13 @@
 }
 
 @media (prefers-reduced-motion) {
+}
+
+/* everything except mobile*/
+@media (min-width: 700px) {
+  .aboutUsContainer {
+    display: flex;
+  }
 }
 
 /* Tablet and Smaller Desktop */
@@ -518,6 +742,11 @@
   }
 
   .title {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+
+  .faqTitle {
     font-size: 3rem;
     font-weight: 700;
   }
