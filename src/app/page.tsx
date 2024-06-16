@@ -145,7 +145,7 @@ export default function Home({ searchParams }: SearchParamProps) {
         </div>
       </main>
       
-      <main className={styles.sectionAlt}>
+      {/* <main className={styles.sectionAlt}>
         <div className={styles.heroSection}>
           <div className={styles.hero}>
             <p className={styles.shadowText}>HOW IT WORKS</p>
@@ -195,7 +195,7 @@ export default function Home({ searchParams }: SearchParamProps) {
         <div className={styles.heroSection}>
           <Faq />
         </div>
-      </main>
+      </main> */}
       
     </>
   );
