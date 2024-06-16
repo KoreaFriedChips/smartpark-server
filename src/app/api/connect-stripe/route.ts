@@ -30,7 +30,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
   await prisma.user.update({
     where: { id: userId },
-    data: { stripeAccountId: account.id },
+    data: { stripeAccountId: account.id, verified: true },
   });
 
   return NextResponse.json({ accountLink: accountLink.url, account: account.id }, { status: 200 });
