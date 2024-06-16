@@ -20,16 +20,25 @@ store the environment variables to setup the application.
 - `GOOGLE_MAPS_API_KEY`
     - Available in Cloudflare
 - `CLERK_SECRET_KEY`
-    - Can find this on the Clerk website
+    - Available in Cloudflare
 - `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`
-    - Can find this on the Clerk website
+    - Available in Cloudflare
+- `SENTRY_AUTH_TOKEN`
+    - Available in Cloudflare
+- `STRIPE_SECRET_KEY`
+    - Available in Cloudflare
+- `FIREBASE_SERVICE_ACCOUNT`
+    - Available in Cloudflare
 
 Here's an example `.env.local`:
 ```
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_XXXXX
-CLERK_SECRET_KEY=sk_test_XXXXX
 CLERK_PUBLIC="-----BEGIN PUBLIC KEY-----\nXXXXX\n-----END PUBLIC KEY-----"
 GOOGLE_MAPS_API_KEY=XXXX_XXX_X
+CLERK_SECRET_KEY=sk_test_XXXXX
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_XXXXX
+SENTRY_AUTH_TOKEN=sntryu_XXXXXX
+STRIPE_SECRET_KEY=pk_test_XXXXXX
+FIREBASE_SERVICE_ACCOUNT={ "type": "service_account", "project_id": XXXX... }
 ```
 
 In the root directory, create another file: `.dev.vars`. This
@@ -43,7 +52,6 @@ Here's an example `.dev.vars`:
 ```
 DATABASE_URL="prisma://XXXX"
 ```
-    
 
 ## Running
 Run `npx prisma generate` to generate the Prisma client. 
