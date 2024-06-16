@@ -8,6 +8,10 @@ import Link from "next/link";
 import { Sparkles, Clapperboard, Car, ParkingCircle, BadgeDollarSign, Wallet, ParkingMeter, HandHeart } from "lucide-react";
 import Script from "next/script";
 import Modal from "@/components/Modal";
+import SelectVideos from "@/components/SelectVideos";
+import DemoSection from "@/components/DemoSection";
+import AboutUs from "@/components/AboutUs";
+import Faq from "@/components/Faq";
 
 type SearchParamProps = {
   searchParams: Record<string, string> | null | undefined;
@@ -54,7 +58,7 @@ export default function Home({ searchParams }: SearchParamProps) {
             </div>
           </div>
         </div>
-        <Image src={"/SMARTPARK-DEMO-2.png"} alt="SmartPark demo" className={styles.heroImage} width={1920} height={1080} priority />
+        <Image src={"/SMARTPARK-DEMO-2.webp"} alt="SmartPark demo" className={styles.heroImage} width={1920} height={1080} priority />
         {/* <p className={styles.miniDescription}>
           *Available for download on the Apple App Store and Google Play Store on <i>May 30th</i>.
         </p> */}
@@ -97,7 +101,7 @@ export default function Home({ searchParams }: SearchParamProps) {
                 </div>
                 {/* <div className={styles.overlayHorizontal}></div> */}
                 <div className={styles.bentoImage}>
-                  <Image src={"/SMARTPARK-DEMO-4-SMALL.png"} alt="SmartPark demo" width={400} height={192} priority />
+                  <Image src={"/SMARTPARK-DEMO-4-SMALL.webp"} alt="SmartPark demo" width={400} height={192} priority />
                 </div>
               </div>
               <div className={styles.bentoSection}>
@@ -134,13 +138,14 @@ export default function Home({ searchParams }: SearchParamProps) {
                 </p>
               </div>
               <div className={styles.bentoImageSide}>
-                <Image src={"/SMARTPARK-DEMO-SMALL-ALT.png"} alt="SmartPark demo" width={300} height={176} priority />
+                <Image src={"/SMARTPARK-DEMO-SMALL-ALT.webp"} alt="SmartPark demo" width={300} height={176} priority />
               </div>
             </div>
           </div>
         </div>
       </main>
-      <main className={styles.sectionAlt}>
+      
+      {/* <main className={styles.sectionAlt}>
         <div className={styles.heroSection}>
           <div className={styles.hero}>
             <p className={styles.shadowText}>HOW IT WORKS</p>
@@ -150,43 +155,48 @@ export default function Home({ searchParams }: SearchParamProps) {
             <p className={styles.subDescription}>With SmartPark's advanced features and intuitive functionality, start finding your next spot now.</p>
           </div>
         </div>
-        <div className={styles.bentoContainer}>
-          <div className={styles.bentoRow}>
-            <div className={styles.bentoSection}>
-              <div className={styles.selectBox}>
-                <p className={styles.selectBoxIcon}>
-                  <i>1</i>
-                </p>
-                <div className={styles.bentoText}>
-                  <h2 className={styles.selectBoxTitle}>Search & Bid.</h2>
-                  <p className={styles.selectBoxDescription}>Easily search, compare, and bid on available parking spots near you.</p>
-                </div>
-              </div>
-              <div className={styles.selectBox}>
-                <p className={styles.selectBoxIcon}>
-                  <i>2</i>
-                </p>
-                <div className={styles.bentoText}>
-                  <h2 className={styles.selectBoxTitle}>Hassle-Free Parking.</h2>
-                  <p className={styles.selectBoxDescription}>Secure your spot, pay through the app, and park your vehicle.</p>
-                </div>
-              </div>
-              <div className={styles.selectBox}>
-                <p className={styles.selectBoxIcon}>
-                  <i>3</i>
-                </p>
-                <div className={styles.bentoText}>
-                  <h2 className={styles.selectBoxTitle}>Earn Rewards.</h2>
-                  <p className={styles.selectBoxDescription}>Leave a review of your experience or earn money from listing your spot.</p>
-                </div>
-              </div>
-            </div>
-            <div className={styles.bentoSection}>
-              <Image src={"/SMARTPARK-DEMO-SMALL.png"} alt="SmartPark demo" width={400} height={556} priority />
-            </div>
-          </div>
+        <div>
+          <SelectVideos />
         </div>
       </main>
+
+      <main className={styles.sectionMiddle}>
+        <div className={styles.heroSection}>
+          <div className={styles.hero}>
+            <p className={styles.shadowText}>APP FEATURES</p>
+            <h1 className={styles.subtitle}>
+              <i></i>Meet your next favorite app.
+            </h1>
+            <p className={styles.subDescriptionThin}>SmartPark is designed with the user in mind, offering a streamlined and intuitive experience that makes parking a breeze.</p>
+          </div>
+        </div>
+
+        <div>
+          <DemoSection />
+        </div>
+      </main>
+
+      <main className={styles.sectionMiddle}>
+        <div className={styles.heroSection}>
+          <div className={styles.hero}>
+            <p className={styles.shadowText}>OUR STORY</p>
+            <h1 className={styles.subtitle}>The
+              <i> future </i>of parking.
+            </h1>
+            <p className={styles.subDescriptionThinner}>SmartPark was created by a small team of young entrepreneurs, designers, creators, and developers to help solve parking issues within our communities.</p>
+          </div>
+        </div>     
+        <div>
+          <AboutUs />
+        </div>
+      </main>
+
+      <main className={styles.sectionMiddle}>
+        <div className={styles.heroSection}>
+          <Faq />
+        </div>
+      </main> */}
+      
     </>
   );
 }

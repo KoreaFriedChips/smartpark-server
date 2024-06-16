@@ -18,6 +18,45 @@ export default function Footer() {
         {/* <a href="#" className={styles.logo}>
           <Image src={"/SMARTPARK-WAITLIST-ICON.png"} alt="SmartPark Logo" width={35} height={35} priority />
         </a> */}
+        
+        {/* <div className={styles.footerContainer}>
+
+          <div>
+          <Image src={colorScheme === "dark" ? "/SMARTPARK-WEB-LOGO-DARK.webp" : "/SMARTPARK-WEB-LOGO-LIGHT.png"} alt="SmartPark Logo" width={202} height={30} priority />
+          </div>
+
+          <div className={styles.columnContainer}>
+            <h3 className={styles.footerHeader}> More</h3>
+            <p className={styles.footerList}>page 1</p>
+            <p className={styles.footerList}>page 2</p>
+            <p className={styles.footerList}>page 3</p>
+            <p className={styles.footerList}>page 4</p>
+            <p className={styles.footerList}>page 5</p>
+          </div>
+
+          <div className={styles.columnContainer}>
+            <h3 className={styles.footerHeader}> About Smart Park</h3>
+            <p className={styles.footerList}>page 1</p>
+            <p className={styles.footerList}>page 2</p>
+            <p className={styles.footerList}>page 3</p>
+            <p className={styles.footerList}>page 4</p>
+          </div>
+
+          <div className={styles.columnContainer}>
+            <h3 className={styles.footerHeader}> Legal</h3>
+            <p className={styles.footerList}>page 1</p>
+          </div>
+
+          <div className={styles.columnContainer}>
+            <h3 className={styles.footerHeader}> Join the wait list</h3>
+            <p className={styles.footerList}>Be notified when the app has launched</p>
+            <Link href={"?show=true"} className={styles.signUpButton} role="button">
+              Sign up now
+            </Link>
+          </div>
+
+        </div> */}
+
         <nav className={styles.nav}>
           <p className={styles.footerText}>©️ 2024 SMARTPARK DIGITAL LLC.</p>
           <div className={styles.socialContainer}>
@@ -35,6 +74,7 @@ export default function Footer() {
             </Link>
           </div>
         </nav>
+
       </div>
     </footer>
   );
