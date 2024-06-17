@@ -38,7 +38,7 @@ export const PUT = async (req: NextRequest) => {
       data: { status: "cancelled" },
     });
     const paymentIntentId = bid.stripePaymentIntentId;
-    await stripe.paymentIntents.cancel(paymentIntentId);
+    await stripe.paymentIntents.cancel(paymentIntentId!);
 
     return NextResponse.json({ message: "successfully cancelled" }, { status: 200 });
   } catch (error: unknown) {
