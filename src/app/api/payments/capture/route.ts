@@ -17,28 +17,10 @@ export const PUT = async (req: NextRequest) => {
 
   console.log("req: ", req);
   let data: any = await req.json();
-  const { bidId } = data;
+  const { paymentIntentId } = data;
   console.log("data: ", data);
 
   try {
-    const bid = await prisma.bid.findUnique({
-      where: {
-        id: bidId,
-      },
-    });
-    if (!bid) {
-      return NextResponse.json(
-        { error: "Bid not found" },
-        { status: 404 }
-      );
-    }
-
-    // update bid status to "captured"
-    await prisma.bid.update({
-      where: { id: bidId },
-      data: { status: "captured" },
-    });
-    const paymentIntentId = bid.stripePaymentIntentId;
     // const confirmedPaymentIntent = await stripe.paymentIntents.confirm(paymentIntentId, {
     //     return_url: "https://trysmartpark.com" 
     //   });
