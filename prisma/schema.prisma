@@ -129,6 +129,13 @@ model Favorite {
   listingId String  @db.ObjectId
 }
 
+model Confirmation {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  confirmed     DateTime    @default(now())
+  transactionId String      @unique @db.ObjectId
+  userId        String      @db.ObjectId
+}
+
 model Reservation {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   starts    DateTime
