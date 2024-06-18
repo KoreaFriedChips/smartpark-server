@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client/edge.js";
 import { PrismaPOST, PrismaGET, getUser } from "@/app/utils";
 import { TransactionModel } from "@zod-prisma";
+import { nanoid } from 'nanoid'; 
 
 const prisma = new PrismaClient();
 
@@ -13,6 +14,8 @@ export const POST = async (
   if (!userId) return NextResponse.json({error: "clerkId not found"}, {status: 400});
   let data: any = await req.json();
   data.userId = userId;
+  data.confirmationId = nanoid();
+  console.log("data: ", data);
   return PrismaPOST(data, prisma.transaction);
 }
 
