@@ -1,0 +1,124 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--line-alt);
+  background: radial-gradient(circle at left, var(--accent-alt) -200%, var(--main-background) 60%);
+  padding: 10rem 6rem 6rem 6rem;
+}
+
+.section {
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  /* background: linear-gradient(120deg, var(--primary) 65%, var(--accent)); */
+  background: linear-gradient(120deg, var(--primary) 70%, var(--third));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  color: var(--secondary);
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.sectionTitle {
+  color: var(--secondary);
+  font-weight: 600;
+  font-size: 1.75rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
+  /* line-height: 2rem; */
+}
+
+li.description {
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  color: var(--third);
+  font-size: 1.1rem;
+  line-height: 2rem;
+  opacity: 0.9;
+}
+
+.bold {
+  color: var(--secondary);
+  font-weight: 600;
+  font-size: inherit;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.list {
+  margin-left: 1.75rem;
+}
+
+.buttonContainer {
+  margin-top: 1.75rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .underline:hover {
+    color: var(--primary);
+  }
+}
+
+@media (min-width: 701px) and (max-width: 1024px) {
+  .main {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .main {
+    padding: 8rem 1rem 4rem 1rem;
+  }
+
+  .title {
+    font-size: 2.25rem;
+    font-weight: 700;
+  }
+
+  .sectionTitle {
+    margin-top: 1.5rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .description {
+    font-size: 1rem;
+    line-height: 1.75rem;
+  }
+  
+  li.description {
+    margin-bottom: 0.25rem;
+  }
+
+  .list {
+    margin-left: 1rem;
+  }
+
+  .buttonContainer {
+    align-self: center;
+    width: 100%;
+    max-width: 90%;
+    margin-top: 2.5rem;
+  }
+}

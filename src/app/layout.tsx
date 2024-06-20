@@ -3,24 +3,43 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "SmartPark: Online Parking Marketplace",
-  description: "SmartPark is a real-time online marketplace that connects drivers with private parking spaces, enabling users to securely list and bid on spots.",
-  keywords: "SmartPark, online parking, parking marketplace, easy parking, book parking spots, parking solutions, convenient parking, parking app",
-  authors: [{ name: "SmartPark LLC", url: "https://trysmartpark.com" }],
+  title: "SmartPark: Parking Marketplace | Airbnb for Parking",
+  description: "SmartPark revolutionizes parking. Find closer, safer, and cheaper parking for events or list your extra space for passive income. Easy, digital, and eco-friendly.",
+  keywords: "SmartPark, parking app, affordable parking, event parking, driveway rental, passive income, parking marketplace, eco-friendly parking",
+  authors: [{ name: "SmartPark Digital LLC" }],
+  creator: "SmartPark Team",
+  publisher: "SmartPark Digital LLC",
   openGraph: {
-    title: "SmartPark: Online Parking Marketplace",
-    description: "SmartPark is a real-time online marketplace that connects drivers with private parking spaces, enabling users to securely list and bid on spots.",
+    title: "SmartPark: Parking Marketplace | Airbnb for Parking",
+    description: "Discover affordable parking or earn from your extra space. SmartPark connects drivers with local parking spots for events, school, and more. Save time, money, and stress!",
+    url: "https://www.trysmartpark.com",
+    siteName: "SmartPark",
+    images: [
+      {
+        url: "https://www.trysmartpark.com/SMARTPARK-DEMO-2.webp",
+        alt: "SmartPark: Find or List Parking Spaces",
+      },
+    ],
+    locale: "en_US",
     type: "website",
-    url: "https://www.smartpark.com",
-    images: ["/SMARTPARK-WAITLIST-ICON.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SmartPark: Online Parking Marketplace",
-    description: "SmartPark is a real-time online marketplace that connects drivers with private parking spaces, enabling users to securely list and bid on spots.",
-    images: ["/SMARTPARK-DEMO-2.png"],
+    title: "SmartPark: Parking Marketplace | Airbnb for Parking",
+    description: "Never struggle with parking again! SmartPark connects you to nearby, affordable parking spaces for events, school, and more. List your space and earn passive income.",
+    images: ["https://www.trysmartpark.com/SMARTPARK-DEMO-2.webp"],
+    creator: "@SmartParkApp",
   },
-};
+  robots: "index, follow",
+  alternates: {
+    canonical: "https://www.trysmartpark.com",
+  },
+  category: "Transportation",
+  classification: "Parking Solutions",
+}
+
+export const viewport = "width=device-width, initial-scale=1";
+
 export const runtime = "edge";
 
 export default function RootLayout({
@@ -32,10 +51,8 @@ export default function RootLayout({
     <html lang="en">
       <body>
         {children}
-        <script> </script>
         <Footer />
       </body>
-      
     </html>
   );
 }
