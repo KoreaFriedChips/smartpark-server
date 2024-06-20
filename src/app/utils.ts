@@ -114,10 +114,10 @@ export const PrismaPUT = async (
       return NextResponse.json({ error: "id not found"}, {status:400});
     }
 
-    if ((userIdPropName === undefined && object['userId'] !== userId) ||
-        (userIdPropName && object[userIdPropName] !== userId)) {
-      return NextResponse.json({ error: "object does not belong to userId"}, {status:403});
-    }
+    // if ((userIdPropName === undefined && object['userId'] !== userId) ||
+    //     (userIdPropName && object[userIdPropName] !== userId)) {
+    //   return NextResponse.json({ error: "object does not belong to userId"}, {status:403});
+    // }
 
     await prismaModel.update({
       where: {
@@ -156,10 +156,10 @@ export const PrismaDELETE = async (
       return NextResponse.json({error: "id not found"}, {status:400});
     }
 
-    if ((userIdPropName === undefined && object['userId'] !== userId) ||
-        (userIdPropName && object[userIdPropName] !== userId)) {
-      return NextResponse.json({ error: "object does not belong to userId"}, {status:403});
-    }
+    // if ((userIdPropName === undefined && object['userId'] !== userId) ||
+    //     (userIdPropName && object[userIdPropName] !== userId)) {
+    //   return NextResponse.json({ error: "object does not belong to userId"}, {status:403});
+    // }
 
     await prismaModel.delete({
       where: {
