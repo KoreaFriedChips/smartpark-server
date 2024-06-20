@@ -28,9 +28,9 @@ return tryOrReturnError(async () => {
     return NextResponse.json({error: "reservation id not found"}, {status:400});
   }
 
-  if (reservation.userId !== userId) {
-    return NextResponse.json({ error: "object does not belong to userId"}, {status:403});
-  }
+  // if (reservation.userId !== userId) {
+  //   return NextResponse.json({ error: "object does not belong to userId"}, {status:403});
+  // }
 
   await prisma.$transaction(async (tx) => {
     if (isBefore(new Date(), subHours(reservation.ends, 1))) {

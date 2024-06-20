@@ -17,28 +17,11 @@ export const PUT = async (req: NextRequest) => {
 
   console.log("req: ", req);
   let data: any = await req.json();
-  const { bidId } = data;
+  const { paymentIntentId } = data;
   console.log("data: ", data);
 
   try {
-    const bid = await prisma.bid.findUnique({
-      where: {
-        id: bidId,
-      },
-    });
-    if (!bid) {
-      return NextResponse.json(
-        { error: "Bid not found" },
-        { status: 404 }
-      );
-    }
-    // update bid status to "cancelled"
-    await prisma.bid.update({
-      where: { id: bidId },
-      data: { status: "cancelled" },
-    });
-    const paymentIntentId = bid.stripePaymentIntentId;
-    await stripe.paymentIntents.cancel(paymentIntentId);
+     await stripe.paymentIntents.cancel(paymentIntentId!);
 
     return NextResponse.json({ message: "successfully cancelled" }, { status: 200 });
   } catch (error: unknown) {
