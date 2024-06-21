@@ -78,9 +78,9 @@ export default function Home({ searchParams }: SearchParamProps) {
               </a>
             </motion.div>
           </div>
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ duration: 0.6 }} variants={fadeInUp}>
-            <Image src={"/SMARTPARK-DEMO-2.webp"} alt="SmartPark demo" className={styles.heroImage} width={1920} height={1080} priority />
-          </motion.div>
+        </motion.div>
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ duration: 0.6 }} variants={fadeInUp}>
+          <Image src={"/SMARTPARK-DEMO-2.webp"} alt="SmartPark demo" className={styles.heroImage} width={1920} height={1080} priority />
         </motion.div>
 
         {/* <p className={styles.miniDescription}>
