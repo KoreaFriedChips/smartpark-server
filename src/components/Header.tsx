@@ -28,14 +28,14 @@ export default function Header() {
   return (
     <header className={`${styles.header} ${hasScrolled ? styles.headerScrolled : ""}`}>
       <div className={styles.headerContainer}>
-        <a href="#" className={styles.logo}>
+        <a href="/" className={styles.logo}>
           <Image src={colorScheme === "dark" ? "/SMARTPARK-WEB-LOGO-DARK.webp" : "/SMARTPARK-WEB-LOGO-LIGHT.png"} alt="SmartPark Logo" width={202} height={30} priority />
         </a>
         <nav className={styles.nav}>
-          <a href="mailto:hello@trysmartpark.com" className={styles.button} role="button">
+          <a href="/contact" className={styles.button} role="button">
             <Mail size={18} />
           </a>
-          <Link href={"?show=true"} className={styles.buttonMain} role="button">
+          <Link href={"/?show=true"} className={styles.buttonMain} role="button">
             <Sparkles size={18} />
             <p>Join</p>
           </Link>

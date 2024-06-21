@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import styles from "./page.module.css";
 import Header from "../components/Header";
@@ -17,6 +18,11 @@ type SearchParamProps = {
   searchParams: Record<string, string> | null | undefined;
 };
 
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
+
 export default function Home({ searchParams }: SearchParamProps) {
   // useEffect(() => {
   //   if (window.prefinery) {
@@ -30,15 +36,30 @@ export default function Home({ searchParams }: SearchParamProps) {
     <>
       <main className={styles.main}>
         {show ? <Modal referral={ref} /> : <Header />}
-        <div className={styles.heroSection}>
+        <motion.div
+          className={styles.heroSection}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          variants={fadeInUp}>
           <div className={styles.hero}>
             <p className={styles.shadowText}>SMARTPARK WAITLIST</p>
             <h1 className={styles.title}>
               Parking made <i>smarter</i>.
             </h1>
             {/* <h1 className={styles.title}>Parking made <i><u>smarter</u></i>.</h1> */}
-            <p className={styles.description}>SmartPark is a real-time online marketplace that connects drivers with private parking spaces, enabling users to securely list and bid on spots.</p>
-            <div className={styles.buttonContainer}>
+            <p className={styles.description}>
+              SmartPark is a real-time online marketplace that connects drivers with private parking spaces, enabling users to securely list and bid
+              on spots.
+            </p>
+            <motion.div
+              className={styles.buttonContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              variants={fadeInUp}>
               <div className={styles.buttonBox}>
                 {/* change "a" to "Link" for no refresh */}
                 {/* <a href={"/?show=true"} className={styles.buttonMain} role="button"> */}
@@ -55,21 +76,24 @@ export default function Home({ searchParams }: SearchParamProps) {
                 <Clapperboard size={18} />
                 <p>Watch trailer</p>
               </a>
-            </div>
+            </motion.div>
           </div>
-        </div>
-        <Image src={"/SMARTPARK-DEMO-2.webp"} alt="SmartPark demo" className={styles.heroImage} width={1920} height={1080} priority />
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ duration: 0.6 }} variants={fadeInUp}>
+            <Image src={"/SMARTPARK-DEMO-2.webp"} alt="SmartPark demo" className={styles.heroImage} width={1920} height={1080} priority />
+          </motion.div>
+        </motion.div>
+
         {/* <p className={styles.miniDescription}>
           *Available for download on the Apple App Store and Google Play Store on <i>May 30th</i>.
         </p> */}
         <p className={styles.tiniDescription}>
           <i>
             By joining the waitlist, you agree to SmartPark's{" "}
-            <a href="#" target="_blank" className={styles.underline}>
+            <a href="/terms-of-service" target="_blank" className={styles.underline}>
               Terms of Service
             </a>{" "}
             and{" "}
-            <a href="#" target="_blank" className={styles.underline}>
+            <a href="/privacy-policy" target="_blank" className={styles.underline}>
               Privacy Policy
             </a>
           </i>
@@ -77,16 +101,30 @@ export default function Home({ searchParams }: SearchParamProps) {
         </p>
       </main>
       <main className={styles.section}>
-        <div className={styles.heroSection}>
+        <motion.div
+          className={styles.heroSection}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          variants={fadeInUp}>
           <div className={styles.hero}>
             <p className={styles.shadowText}>ONLINE MARKETPLACE</p>
             <h1 className={styles.subtitle}>
               This is <i>SmartPark.</i>
             </h1>
-            <p className={styles.subDescription}>Stop wasting time and money searching for parking. With SmartPark, find affordable parking spaces or list your own spot in seconds.</p>
+            <p className={styles.subDescription}>
+              Stop wasting time and money searching for parking. With SmartPark, find affordable parking spaces or list your own spot in seconds.
+            </p>
           </div>
-        </div>
-        <div className={styles.bentoContainer}>
+        </motion.div>
+        <motion.div
+          className={styles.bentoContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          variants={fadeInUp}>
           <div className={styles.bentoSection}>
             <div className={styles.bentoRow}>
               <div className={styles.bentoBox}>
@@ -95,7 +133,8 @@ export default function Home({ searchParams }: SearchParamProps) {
                   <div className={styles.bentoText}>
                     <h2 className={styles.bentoTitle}>Find parking in a tap.</h2>
                     <p className={styles.bentoDescription}>
-                      Quickly locate affordable parking spaces near your destination using advanced search filters, allowing you to find your perfect spot instantly.
+                      Quickly locate affordable parking spaces near your destination using advanced search filters, allowing you to find your perfect
+                      spot instantly.
                     </p>
                   </div>
                 </div>
@@ -110,7 +149,8 @@ export default function Home({ searchParams }: SearchParamProps) {
                   <div className={styles.bentoText}>
                     <h2 className={styles.bentoTitle}>Save time & money.</h2>
                     <p className={styles.bentoDescription}>
-                      Compare prices and bid on the best deals based on your desired parking duration, with real-time updates to ensure you always have access to the most current availability.
+                      Compare prices and bid on the best deals based on your desired parking duration, with real-time updates to ensure you always
+                      have access to the most current availability.
                     </p>
                   </div>
                 </div>
@@ -122,7 +162,8 @@ export default function Home({ searchParams }: SearchParamProps) {
                   <div className={styles.bentoText}>
                     <h2 className={styles.bentoTitle}>Earn real $$$.</h2>
                     <p className={styles.bentoDescription}>
-                      Earn passive income by listing your driveway, yard, or other property on SmartPark's secure platform, seamlessly managing cashless payment processing and customer support.
+                      Earn passive income by listing your driveway, yard, or other property on SmartPark's secure platform, seamlessly managing
+                      cashless payment processing and customer support.
                     </p>
                   </div>
                 </div>
@@ -133,8 +174,8 @@ export default function Home({ searchParams }: SearchParamProps) {
               <div className={styles.bentoText}>
                 <h2 className={styles.bentoTitle}>Community-driven platform.</h2>
                 <p className={styles.bentoDescription}>
-                  Join a growing community of users who are revolutionizing the way we think about parking. Help shape the future of parking by providing feedback and suggestions to the SmartPark
-                  team. We'll listen!
+                  Join a growing community of users who are revolutionizing the way we think about parking. Help shape the future of parking by
+                  providing feedback and suggestions to the SmartPark team. We'll listen!
                 </p>
               </div>
               <div className={styles.bentoImageSide}>
@@ -142,9 +183,9 @@ export default function Home({ searchParams }: SearchParamProps) {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </main>
-      
+
       {/* <main className={styles.sectionAlt}>
         <div className={styles.heroSection}>
           <div className={styles.hero}>
@@ -196,7 +237,6 @@ export default function Home({ searchParams }: SearchParamProps) {
           <Faq />
         </div>
       </main> */}
-      
     </>
   );
 }
